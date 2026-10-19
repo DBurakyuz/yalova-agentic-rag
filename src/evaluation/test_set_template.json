@@ -1,0 +1,30 @@
+[
+    {
+        "id": "q1",
+        "difficulty": "easy",
+        "query": "Bilgisayar Mühendisliği öğrencisi olarak Erasmus başvurusu için genel not ortalamam en az kaç olmalıdır?",
+        "expected_answer": "Lisans öğrencileri için genel akademik not ortalamasının en az 2.20/4.00 olması gerekmektedir.",
+        "ground_truth_docs": [
+            {
+                "belge_adi": "Erasmus Yönergesi",
+                "madde_no": "Madde 6"
+            }
+        ]
+    },
+    {
+        "id": "q2",
+        "difficulty": "hard",
+        "query": "Ders kaydımı tamamladıktan sonra, Erasmus programını kazanırsam seçtiğim dersleri sildirebilir miyim, ve bu işlem akademik takvimde hangi haftaya kadar yapılmalıdır?",
+        "expected_answer": "Evet sildirebilirsiniz. Ders ekle-sil işlemleri akademik takvimde belirtilen 2. haftanın sonuna kadar ilgili birime dilekçe ile bildirilerek yapılabilir.",
+        "ground_truth_docs": [
+            {
+                "belge_adi": "Önlisans ve Lisans Eğitim Öğretim Yönetmeliği",
+                "madde_no": "Madde 15"
+            },
+            {
+                "belge_adi": "Akademik Takvim",
+                "madde_no": null
+            }
+        ]
+    }
+]

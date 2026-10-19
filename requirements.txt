@@ -1,0 +1,33 @@
+# Temel Araçlar
+langgraph
+langchain
+langchain-community
+pydantic
+
+# Vektör DB ve Arama
+chromadb
+rank-bm25
+sentence-transformers
+FlagEmbedding
+
+# LLM ve API'ler
+ollama
+
+# Veri Toplama ve İşleme
+requests
+beautifulsoup4
+trafilatura
+playwright
+PyMuPDF
+pdfplumber
+pytesseract
+Pillow
+
+# Arayüz
+streamlit
+
+# Değerlendirme
+ragas
+
+# Yardımcı Kütüphaneler
+python-dotenv

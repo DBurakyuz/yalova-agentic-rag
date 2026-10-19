@@ -1,0 +1,13 @@
+# Docker imajına dahil edilmemesi gereken dosyalar
+venv/
+__pycache__/
+*.pyc
+.env
+
+# Vector_db ve processed_data dahil edilebilir ancak 
+# raw_data'yı almak imajı çok şişirebilir. İsteğe bağlı açılabilir.
+data/raw/
+
+.git/
+.idea/
+.vscode/

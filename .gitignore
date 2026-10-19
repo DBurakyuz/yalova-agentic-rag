@@ -1,0 +1,33 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Sanal Ortamlar (Virtual Environments)
+venv/
+src/venv/
+.venv/
+env/
+
+# Ortam Değişkenleri ve Gizli Anahtarlar
+.env
+.env.*
+!.env.example
+
+# Vektör Veritabanı (Büyük ikili dosyalar hariç tutulur)
+data/vector_db/*
+!data/vector_db/.gitkeep
+
+# Büyük PDF Dosyaları
+data/raw/*.pdf
+data/raw/*.PDF
+
+# Test Çıktıları ve Geçici Dosyalar
+src/evaluation/results/
+*.log
+
+# Editör ve İşletim Sistemi Dosyaları
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
