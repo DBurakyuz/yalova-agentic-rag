@@ -25,6 +25,7 @@ data/raw/*.PDF
 # Test Çıktıları ve Geçici Dosyalar
 src/evaluation/results/
 *.log
+*.zip
 
 # Editör ve İşletim Sistemi Dosyaları
 .vscode/
