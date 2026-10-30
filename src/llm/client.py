@@ -17,8 +17,8 @@ class LLMClient:
         ya yerel Ollama'ya ya da uzak bir API'ye (örn. OpenAI) yönlendirir.
         """
         self.provider = LLM_PROVIDER
-        # Ollama'nın varsayılan yerel API adresi
-        self.ollama_url = "http://localhost:11434/api/generate"
+        # Ollama'nın API adresi (Docker içinden erişim için OLLAMA_URL ortam değişkeni desteklenir)
+        self.ollama_url = os.getenv("OLLAMA_URL", "http://localhost:11434/api/generate")
         
     def generate(self, prompt: str, system_prompt: str = "", format_json: bool = False) -> str:
         """LLM çağrısını soyutlayan ana metod."""
