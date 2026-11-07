@@ -1,8 +1,8 @@
 # TÜBİTAK 2209-A ÜNİVERSİTE ÖĞRENCİLERİ ARAŞTIRMA PROJELERİ DESTEKLEME PROGRAMI
 # NİHAİ RESMİ TYBS BAŞVURU FORMU VE HAKEM DENETİM RAPORU
 
-**Proje Yürütücüsü:** Dursun Burak Yüz (Bilgisayar Mühendisliği 4. Sınıf)  
-**Danışman:** [Danışman Unvanı, Adı Soyadı]  
+**Proje Yürütücüsü:** Dursun Burak Akyüz (Bilgisayar Mühendisliği 4. Sınıf)  
+**Danışman:** Prof. Dr. Ümmühan Avcı  
 **Kurum:** Yalova Üniversitesi, Mühendislik Fakültesi, Bilgisayar Mühendisliği Bölümü  
 **Uygulama Kapsamı:** Yalova Üniversitesi İdari ve Akademik Mevzuatı (Öğrenci İşleri ve Dış İlişkiler Koordinatörlüğü)  
 **Proje Süresi:** 6 Ay  
@@ -275,10 +275,10 @@ LangGraph üzerinde durum çizgesi (StateGraph) kurgulanacaktır. Kullanıcı so
 
 #### Kim(ler) Tarafından Gerçekleştirileceği
 ```text
-Proje Yürütücüsü (Dursun Burak Yüz):
+Proje Yürütücüsü (Dursun Burak Akyüz):
 Proje kapsamındaki tüm teknik geliştirme ve deneysel uygulama adımlarından doğrudan sorumludur. Web kazıma, OCR ve hiyerarşik mevzuat ön işleme boru hattının kurulması (İP-1); BGE-M3 ve BM25 hibrit indeksleme ile Cross-Encoder yeniden sıralama katmanının kodlanması (İP-2); LangGraph tabanlı durum makinelerinin (Niyet, CRAG, Yanıt ve Self-RAG Doğrulayıcı ajanlar) geliştirilmesi (İP-3); kullanıcı web arayüzünün ve Docker konteynerizasyon yapısının tamamlanması (İP-4); 5 aşamalı ablasyon deneylerinin yürütülmesi, RAGAS ve Wilcoxon istatistiksel analizlerinin gerçekleştirilmesi ile SUS anketlerinin uygulanmasında (İP-5) birincil derecede görev alacaktır.
 
-Proje Danışmanı:
+Proje Danışmanı (Prof. Dr. Ümmühan Avcı):
 Araştırma tasarımının ve ablasyon metodolojisinin bilimsel standartlara uygunluğunun denetlenmesi, idari birimlerle koordinasyon kurularak 100 soruluk test setinin uzman doğrulama protokolünün yönetilmesi, istatistiksel hipotez testlerinin ve uzman değerlendirme sonuçlarının akademik geçerliliğinin kontrol edilmesi ve 6 aylık çalışma takviminin periyodik akademik takibinden sorumludur.
 ```
 
