@@ -57,7 +57,7 @@ Bu araştırmanın temel amacı; Yalova Üniversitesi Öğrenci İşleri ve Dı�
 
 Araştırma kapsamında çok katmanlı bir metodoloji izlenecektir: (1) Yalova Üniversitesi idari portallarından taranan yönerge, senato kararları ve akademik takvim verileri; taranmış PDF'ler için OCR katmanından geçirilerek Türk idari mevzuat diline özel deterministik regex ayrıştırıcılarıyla "Madde" ve "Fıkra" sınırlarından parçalanacak; yürürlük tarihi ve sürüm üstverileriyle etiketlenecektir. (2) Bilgi getirme aşamasında, çok dilli BGE-M3 yoğun vektörleri ile BM25 seyrek anahtar kelime araması Reciprocal Rank Fusion (RRF) ile harmanlanacak; aday bağlamlar Cross-Encoder mimarisiyle yeniden sıralanacaktır. (3) LangGraph tabanlı durum çizgesi üzerinde Niyet Analiz Ajanı, getirilen kanıtların yeterliliğini denetleyip azami 2 tura kadar arama döngüsü başlatan Düzeltici Arama Ajanı (CRAG) ve üretilen yanıttaki her iddiayı doğrudan mevzuat maddesiyle eşleştiren Öz-Doğrulayıcı Ajan (Self-RAG) çalıştırılacaktır.
 
-Sistemin başarımı; 50 tek adımlı ve 50 çok adımlı sorudan oluşan, 2 bağımsız idari uzman tarafından etiketlenip doğrulanmış (Cohen's Kappa >= 0.80) 100 soruluk özgün "Altın Standart" (Ground Truth) veri seti üzerinde 5 aşamalı kapsamlı ablasyon analizi (Naive RAG, Hibrit, Reranking, CRAG, Tam Agentic RAG) ile test edilecektir. Değerlendirme sürecinde otomatik RAGAS metriklerinin yanı sıra çift-körleme uzman puanlaması (madde doğruluğu, yürürlük uygunluğu, hukuki bütünlük) uygulanacak; modeller arası performans farkları Shapiro-Wilk normallik testi sonrasında Wilcoxon İşaretli Sıralar Testi ve Rank-Biserial etki büyüklüğü ile raporlanacaktır. Prototipin kullanıcı kabulü ise 50 katılımcılı Sistem Kullanılabilirlik Ölçeği (SUS; Brooke, 1996) ile ölçülecektir. Elde edilecek bulgular, yükseköğretimde güvenilir yapay zekâ asistanlarının tasarımı için açık kaynaklı ve doğrulanmış bir mimari referans sunacaktır.
+Sistemin başarımı; 50 tek adımlı ve 50 çok adımlı sorudan oluşan, 2 bağımsız idari uzman tarafından etiketlenip doğrulanmış (Cohen's Kappa >= 0.80) 100 soruluk özgün "Altın Standart" (Ground Truth) veri seti üzerinde 5 aşamalı kapsamlı ablasyon analizi (Naive RAG, Hibrit, Reranking, CRAG, Tam Agentic RAG) ile test edilecektir. Değerlendirme sürecinde otomatik RAGAS metriklerinin yanı sıra çift-körleme uzman puanlaması (madde doğruluğu, yürürlük uygunluğu, hukuki bütünlük) uygulanacak; modeller arası performans farkları Shapiro-Wilk normallik testi sonrasında Wilcoxon İşaretli Sıralar Testi ve Rank-Biserial etki büyüklüğü ile raporlanacaktır. Prototipin kullanıcı kabulü ise 30 katılımcılı Sistem Kullanılabilirlik Ölçeği (SUS; Brooke, 1996) ile ölçülecektir. Elde edilecek bulgular, yükseköğretimde güvenilir yapay zekâ asistanlarının tasarımı için açık kaynaklı ve doğrulanmış bir mimari referans sunacaktır.
 ```
 
 ---
@@ -114,7 +114,7 @@ Bu projenin temel amacı; Yalova Üniversitesi idari ve akademik süreçlerine i
    50 tek adımlı ve 50 çok adımlı sorudan oluşan, 2 idari mevzuat uzmanı tarafından doğrulanmış (**Cohen's Kappa $\ge 0.80$**) 100 soruluk özgün "Altın Standart" veri setinin oluşturulması; 5 farklı model konfigürasyonu ($M_0$-$M_4$) üzerinde ablasyon deneylerinin yürütülmesi ve performans artışının **Wilcoxon İşaretli Sıralar Testi ($p < 0.05$)** ile istatistiksel olarak kanıtlanması.
 
 6. **Kullanıcı Kabulü ve Konteynerizasyon:**  
-   Çok turlu konuşma geçmişini destekleyen kullanıcı arayüzünün (Streamlit/FastAPI) ve taşınabilir Docker konteynerinin hazırlanması; öğrenciler, bölüm koordinatörleri ve ilgili akademik/idari süreç paydaşlarından oluşan toplam 50 kullanıcı ile yürütülecek testlerde **Sistem Kullanılabilirlik Ölçeği (SUS; Brooke, 1996) skorunun 75/100 (iyi düzey)** üzerinde gerçekleşmesinin sağlanması.
+   Çok turlu konuşma geçmişini destekleyen kullanıcı arayüzünün (Streamlit/FastAPI) ve taşınabilir Docker konteynerinin hazırlanması; öğrenciler, bölüm koordinatörleri ve ilgili akademik/idari süreç paydaşlarından oluşan toplam 30 kullanıcı ile yürütülecek testlerde **Sistem Kullanılabilirlik Ölçeği (SUS; Brooke, 1996) skorunun 75/100 (iyi düzey)** üzerinde gerçekleşmesinin sağlanması.
 
 ---
 
@@ -192,7 +192,7 @@ Her bir model ($M_0$ - $M_4$), aynı 100 altın soru üzerinde ayrı ayrı koşt
    * *Kriter B (Yürürlük ve Sürüm Uygunluğu - 1-5):* Bilgi güncel mevzuata mı dayanıyor, mülga madde içeriyor mu?
    * *Kriter C (Hukuki/İdari Bütünlük - 1-5):* Yanıt yanıltıcı bir hüküm veya hak kaybı riski barındırıyor mu?  
    Puanlayıcılar arası güvenilirlik **Cohen's Kappa ($\kappa$)** ve **Krippendorff's Alpha ($\alpha$)** ile raporlanacaktır.
-3. **Kullanıcı Kabul Testi (SUS):** Sistemin nihai prototipi; lisans öğrencileri, araştırma görevlileri ve ilgili akademik/idari süreç paydaşlarından oluşan 50 kişilik kullanıcı grubuna test ettirilerek 10 soruluk standart **Sistem Kullanılabilirlik Ölçeği (System Usability Scale - SUS; Brooke, 1996)** anketi uygulanacak ve kullanılabilirlik skoru raporlanacaktır.
+3. **Kullanıcı Kabul Testi (SUS):** Sistemin nihai prototipi; lisans öğrencileri, araştırma görevlileri ve ilgili akademik/idari süreç paydaşlarından oluşan 30 kişilik kullanıcı grubuna test ettirilerek 10 soruluk standart **Sistem Kullanılabilirlik Ölçeği (System Usability Scale - SUS; Brooke, 1996)** anketi uygulanacak ve kullanılabilirlik skoru raporlanacaktır.
 
 ---
 
@@ -225,7 +225,7 @@ Proje ekibi tarafından Yalova Üniversitesi Erasmus yönergeleri ve 2024-2025 a
 * **İP-2 (2. Ay):** BGE-M3 ve BM25 hibrit indeksleme, RRF füzyonu ve Cross-Encoder yeniden sıralama pipeline'ı.
 * **İP-3 (3. Ay):** LangGraph durum çizgesi, Niyet Ajanı, döngüsel CRAG mekanizması ve Self-RAG atıf doğrulayıcısının kodlanması.
 * **İP-4 (4. Ay):** Streamlit/FastAPI kullanıcı web arayüzü, çok turlu oturum hafızası ve platformdan bağımsız Docker konteynerizasyonu.
-* **İP-5 (5. ve 6. Aylar - 2 Ay Ayrılmıştır):** 100 soruluk altın test setinin uzmanlarca doğrulanması (Cohen's Kappa $\kappa \ge 0.80$), 5 aşamalı ablasyon deneyleri ($M_0$-$M_4$), çift-körleme uzman paneli, RAGAS ölçümleri, Wilcoxon analizleri, 50 kullanıcılı SUS testi ve nihai raporlama.
+* **İP-5 (5. ve 6. Aylar - 2 Ay Ayrılmıştır):** 100 soruluk altın test setinin uzmanlarca doğrulanması (Cohen's Kappa $\kappa \ge 0.80$), 5 aşamalı ablasyon deneyleri ($M_0$-$M_4$), çift-körleme uzman paneli, RAGAS ölçümleri, Wilcoxon analizleri, 30 kullanıcılı SUS testi ve nihai raporlama.
 
 ---
 
@@ -269,7 +269,7 @@ LangGraph üzerinde durum çizgesi (StateGraph) kurgulanacaktır. Kullanıcı so
 - Başarı Ölçütü: Web arayüzünün ve Docker ortamının hatasız ve kararlı şekilde ayağa kalkması (%15).
 
 İP-5: Altın Test Setinin Uzmanlarca Doğrulanması, Kapsamlı Ablasyon Deneyleri, Körleme Uzman Değerlendirmesi ve İstatistiksel Analiz (5. ve 6. Aylar - 2 Ay)
-Öğrenci İşleri ve Dış İlişkiler uzmanları rehberliğinde 50 tek adımlı, 50 çok adımlı sorudan oluşan 100 soruluk Altın Standart test veri seti oluşturulacak ve uzmanlar arası uyum (Cohen's Kappa >= 0.80) doğrulanacaktır. 5 farklı ablasyon modeli (M0-M4) aynı test setinde koşturulacaktır. RAGAS otomatik metrikleri hesaplanacak; 40 soru üzerinde çift-körleme uzman paneli ile madde ve hukuki bütünlük puanlaması yapılacaktır. Shapiro-Wilk normallik testi sonrasında Wilcoxon İşaretli Sıralar Testi ve Rank-Biserial etki büyüklüğü hesaplanacaktır. 50 kullanıcı ile SUS anketi yürütülecek ve TÜBİTAK sonuç raporu hazırlanacaktır.
+Öğrenci İşleri ve Dış İlişkiler uzmanları rehberliğinde 50 tek adımlı, 50 çok adımlı sorudan oluşan 100 soruluk Altın Standart test veri seti oluşturulacak ve uzmanlar arası uyum (Cohen's Kappa >= 0.80) doğrulanacaktır. 5 farklı ablasyon modeli (M0-M4) aynı test setinde koşturulacaktır. RAGAS otomatik metrikleri hesaplanacak; 40 soru üzerinde çift-körleme uzman paneli ile madde ve hukuki bütünlük puanlaması yapılacaktır. Shapiro-Wilk normallik testi sonrasında Wilcoxon İşaretli Sıralar Testi ve Rank-Biserial etki büyüklüğü hesaplanacaktır. 30 kullanıcı ile SUS anketi yürütülecek ve TÜBİTAK sonuç raporu hazırlanacaktır.
 - Başarı Ölçütü: Agentic RAG mimarisinin Recall@5 ve Sadakat metriklerinde Naive RAG'e kıyasla p < 0.05 düzeyinde istatistiksel üstünlük sağlaması, ablasyon raporunun tamamlanması ve SUS skorunun 75 üzerinde gerçekleşmesi (%30).
 ```
 
@@ -341,7 +341,7 @@ Açık kaynaklı temel dil modelinin (8B parametreli) yerel ortamda kuantize edi
 ### 7.2. Ekonomik/Ticari/Sosyal Çıktılar
 ```text
 - Çalışan Yazılım Prototipi: Üniversite web portallarına kolayca entegre olabilen, Docker konteyneri ile paketlenmiş, çok turlu konuşma geçmişini destekleyen ve mevzuat maddesi düzeyinde doğrulanmış yanıt üreten "Agentic RAG Bilgi Asistanı" çalışan yazılım prototipi elde edilecektir.
-- Ölçülebilir Kullanıcı Kabulü ve Kurumsal Verimlilik: Sistem Kullanılabilirlik Ölçeği (SUS) ile öğrenciler ve ilgili akademik/idari süreç paydaşlarından oluşan 50 kişilik kullanıcı grubu üzerinde yürütülecek testlerde en az 75/100 (iyi düzey) kullanılabilirlik skoru hedeflenmektedir. Öğrencilerin mevzuata 7/24 resmi madde atıflarıyla erişmesi sağlanarak bilgi eksikliğinden kaynaklanan hak kayıpları engellenecek ve idari birimlerin danışma süreçlerinde ölçülebilir bir zaman tasarrufu sağlanacaktır.
+- Ölçülebilir Kullanıcı Kabulü ve Kurumsal Verimlilik: Sistem Kullanılabilirlik Ölçeği (SUS) ile öğrenciler ve ilgili akademik/idari süreç paydaşlarından oluşan 30 kişilik kullanıcı grubu üzerinde yürütülecek testlerde en az 75/100 (iyi düzey) kullanılabilirlik skoru hedeflenmektedir. Öğrencilerin mevzuata 7/24 resmi madde atıflarıyla erişmesi sağlanarak bilgi eksikliğinden kaynaklanan hak kayıpları engellenecek ve idari birimlerin danışma süreçlerinde ölçülebilir bir zaman tasarrufu sağlanacaktır.
 - Açık Kaynak Altyapı Katkısı: Türk idari mevzuat diline özel geliştirilen kural tabanlı regex ayrıştırma algoritmaları ve LangGraph çoklu ajan akış şablonları GitHub üzerinden açık kaynak lisansıyla yayımlanarak diğer üniversiteler için referans bir Ar-Ge çatısı oluşturulacaktır.
 ```
 
@@ -363,7 +363,7 @@ Aşağıdaki karne, TÜBİTAK 2209-A başvuru panelinde görev alan kıdemli bir
 | **1. Özgün Değer ve Bilimsel Nitelik** | **95 / 100** | Proje, yalnızca mevcut açık kaynaklı kütüphanelerin entegrasyonu olmaktan çıkarılmış; Türk idari mevzuatının katı normlar hiyerarşisi ve zamansal yürürlük kısıtlarına duyarlı özgün bir mimariye oturtulmuştur. Hipotezler ön çalışma (PoC, n=20) ve literatür verileriyle somut gerekçelendirilmiştir. | ✅ EKSİKSİZ |
 | **2. Yöntem ve Deneysel Tasarım** | **98 / 100** | 100 soruluk test setinin taksonomisi (50 tek + 50 çok adımlı), 2 bağımsız idari uzman ve Cohen's Kappa ($\kappa \ge 0.80$) protokolüyle güvenceye alınmıştır. 5 düzeyli artımlı ablasyon matrisi ($M_0$-$M_4$) metodolojik olarak kusursuzdur. Otomatik RAGAS metrikleri çift-körleme uzman paneli ve Wilcoxon/Bonferroni testleriyle tahkim edilmiştir. | ✅ EKSİKSİZ |
 | **3. Proje Yönetimi ve Takvim** | **94 / 100** | 6 aylık süre iş paketlerine mantıksal sıra ve bağımlılıklarla dağıtılmıştır (1+1+1+1+2 ay). İP-5'e deneysel analiz için 2 tam ay ayrılmış olması son derece gerçekçidir. 5 iş paketinin her biri için tanımlanan riskler ve B planları somuttur. | ✅ EKSİKSİZ |
-| **4. Yaygın Etki** | **92 / 100** | Doğrulanamayacak olan "%40 iş yükü azaltımı" gibi iddialar elenmiş; yerine 50 kişilik ölçülebilir Sistem Kullanılabilirlik Ölçeği (SUS $\ge 75$), IEEE/TAINN konferans bildirisi ve açık kaynak test seti hedefleri konulmuştur. | ✅ EKSİKSİZ |
+| **4. Yaygın Etki** | **92 / 100** | Doğrulanamayacak olan "%40 iş yükü azaltımı" gibi iddialar elenmiş; yerine 30 kişilik ölçülebilir Sistem Kullanılabilirlik Ölçeği (SUS $\ge 75$), IEEE/TAINN konferans bildirisi ve açık kaynak test seti hedefleri konulmuştur. | ✅ EKSİKSİZ |
 | **5. Bütçe ve Maliyet Uygunluğu** | **98 / 100** | Toplam bütçe 12.000 TL tavanındadır. 0 TL makine-teçhizat, 0 TL sarf malzemesi ve 12.000 TL doğrudan deneysel hizmet alımı (6.000 TL RunPod GPU + 6.000 TL LLM API) birim maliyet ve süre bazında tam olarak dökümlenmiştir. Mevzuata aykırı tek bir kalem dahi bulunmamaktadır. | ✅ EKSİKSİZ |
 | **6. Akademik Dil ve Biçim** | **98 / 100** | Bilimsel olarak doğrulanamayacak abartılı iddialar tamamen arındırılmış, terminoloji tutarlı kılınmış, metin içi tüm atıflar ile kaynakça arasında 1-e-1 kusursuz eşleşme sağlanmıştır. | ✅ EKSİKSİZ |
 | **GENEL DEĞERLENDİRME SONUCU** | **95.5 / 100** | **DESTEKLENMESİ UYGUNDUR (A DÜZEYİ - DOĞRUDAN KABUL)** | 🏆 |
