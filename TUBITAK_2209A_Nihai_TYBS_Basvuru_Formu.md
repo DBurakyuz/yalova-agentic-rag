@@ -125,7 +125,7 @@ Araştırma; çok katmanlı üniversite idari mevzuatında bilgi getirme ve üre
 
 Önerilen **Hiyerarşik ve Zamansal Mevzuat Yönlendirmeli Çoklu Ajan Mimarisi (Agentic RAG)** beş temel modülden oluşmaktadır:
 1. **Deterministik Mevzuat Ayrıştırma ve Sürüm Üstverisi Katmanı:** Taranmış PDF'ler Tesseract OCR ile metne dökülür. Metinler, Türk mevzuat yazım standardına uygun özel regex algoritmalarıyla doğrudan `Madde` ve `Fıkra` sınırlarından bölünür. Her parçaya `belge_id`, `madde_no`, `fikra_no`, `yururluk_tarihi`, `senato_karar_no` ve `mulga_durumu` etiketleri eklenir; yürürlükte olmayan mülga maddeler arama uzayından izole edilir.
-2. **Hibrit Bilgi Getirme ve RRF Füzyonu:** Semantik bağlamı yakalayan yoğun vektörler (BGE-M3; Chen vd., 2024) ile kesin kanun/madde numaralarını yakalayan seyrek terim indeksi (BM25Okapi) birlikte taranır. İki farklı kaynaktan gelen sıralamalar Karşılıklı Sıralama Birleştirmesi (Reciprocal Rank Fusion - RRF; Cormack vd., 2009) ile harmanlanır:
+2. **Hibrit Bilgi Getirme ve RRF Füzyonu:** Semantik bağlamı yakalayan yoğun vektörler (BGE-M3; Chen vd., 2024) ile kesin kanun/madde numaralarını yakalayan seyrek terim indeksi (BM25Okapi; Robertson & Zaragoza, 2009) birlikte taranır. İki farklı kaynaktan gelen sıralamalar Karşılıklı Sıralama Birleştirmesi (Reciprocal Rank Fusion - RRF; Cormack vd., 2009) ile harmanlanır:
    $$\text{RRF\_Score}(d \in D) = \sum_{m \in M} \frac{1}{k + r_m(d)} \quad (k = 60)$$
 3. **Cross-Encoder ile Yeniden Sıralama (Re-ranking):** RRF ile seçilen ilk 20 aday bağlam, `bge-reranker-v2-m3` Cross-Encoder modeliyle sorgu-bağlam çifti olarak tam dikkat (full-attention) mekanizması üzerinden puanlanır ve en yüksek skorlu ilk $k=5$ bağlama daraltılır.
 4. **Döngüsel İnceleme ve Düzeltici RAG (CRAG Döngüsü):** LangGraph üzerinde çalışan Belge Analiz Ajanı, getirilen mevzuat maddelerinin kullanıcının niyetini karşılamaya yetip yetmediğini ikili sınıflandırma (Yeterli / Yetersiz) ile denetler. Yetersizlik durumunda arama sorgusunu otonom olarak yeniden yapılandırarak azami 2 tura kadar yeni arama başlatır; sonsuz döngüyü engellemek amacıyla 2. tur sonunda güvenli çıkış (fallback) işletir (Yan vd., 2024).
@@ -159,7 +159,7 @@ Araştırmanın deneysel geçerliliğini sağlamak amacıyla Yalova Üniversites
   * *Tek Adımlı Sorular (Single-hop, n=50):* Tek bir yönetmelik maddesiyle doğrudan yanıtlanabilen olgusal sorular (Örn: "Mazeret sınavı başvuru süresi kaç gündür?").
   * *Çok Adımlı Sorular (Multi-hop, n=50):* Birden fazla birimin mevzuatını ve akademik takvimini birleşik sentezlemeyi gerektiren çapraz sorular (Örn: "Erasmus programına güz döneminde katılan bir öğrencinin ders intibak işlemleri harç ödeme ve ders kayıt haftasıyla nasıl ilişkilendirilir?").
 * **Etiketleme Şeması:** Her test kaydı; `Soru Metni`, `İlgili Birim/Yönetmelik Adı`, `Doğrudan Dayanak Madde ve Fıkra Numaraları`, `Yürürlük Tarihi/Sürüm No` ve `Uzmanlarca Yazılmış İdeal Altın Yanıt` alanlarını içerecektir.
-* **Uzman Doğrulama Protokolü:** Sorular ve altın yanıtlar, Yalova Üniversitesi Öğrenci İşleri Daire Başkanlığı ve Dış İlişkiler Koordinatörlüğü'nden **2 bağımsız idari uzman** tarafından incelenecektir. Uzmanlar arasındaki uyuşma düzeyi **Cohen's Kappa ($\kappa$)** katsayısı ile hesaplanacak; yalnızca $\kappa \ge 0.80$ (yüksek uzlaşma) sağlanan sorular nihai test setine kabul edilecektir.
+* **Uzman Doğrulama Protokolü:** Sorular ve altın yanıtlar, Yalova Üniversitesi Öğrenci İşleri Daire Başkanlığı ve Dış İlişkiler Koordinatörlüğü'nden **2 bağımsız idari uzman** tarafından incelenecektir. Uzmanlar arasındaki uyuşma düzeyi **Cohen's Kappa katsayısı ($\kappa$; Cohen, 1960)** ile hesaplanacak; yalnızca $\kappa \ge 0.80$ (yüksek uzlaşma) sağlanan sorular nihai test setine kabul edilecektir.
 
 ---
 
@@ -234,10 +234,12 @@ Proje ekibi tarafından Yalova Üniversitesi Erasmus yönergeleri ve 2024-2025 a
 * Asai, A., Wu, Z., Wang, Y., Sil, A., & Hajishirzi, H. (2023). Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection. *arXiv preprint arXiv:2310.11511*.
 * Brooke, J. (1996). SUS: A 'quick and dirty' usability scale. *Usability evaluation in industry*, 189(194), 4-7.
 * Chen, J., Xiao, S., et al. (2024). BGE M3-Embedding: Multi-Lingual, Multi-Functionality, Multi-Granularity Text Embeddings Through Versatile Pre-Training. *arXiv preprint arXiv:2402.03216*.
+* Cohen, J. (1960). A coefficient of agreement for nominal scales. *Educational and Psychological Measurement*, 20(1), 37-46.
 * Cormack, G. V., Clarke, C. L., & Buettcher, S. (2009). Reciprocal rank fusion outperforms condorcet and individual machine learning methods. *ACM SIGIR*, 758-759.
 * Es, S., James, J., et al. (2023). RAGAS: Automated Evaluation of Retrieval Augmented Generation. *arXiv preprint arXiv:2309.15217*.
 * Gao, Y., Xiong, Y., et al. (2023). Retrieval-Augmented Generation for Large Language Models: A Survey. *arXiv preprint arXiv:2312.10997*.
 * Lewis, P., Perez, E., et al. (2020). Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks. *Advances in Neural Information Processing Systems (NeurIPS)*, 33, 9459-9474.
+* Robertson, S., & Zaragoza, H. (2009). The Probabilistic Relevance Framework: BM25 and Beyond. *Foundations and Trends® in Information Retrieval*, 3(4), 333-389.
 * Yan, S. Q., Gu, J. C., et al. (2024). Corrective Retrieval Augmented Generation. *arXiv preprint arXiv:2401.15884*.
 
 ---
