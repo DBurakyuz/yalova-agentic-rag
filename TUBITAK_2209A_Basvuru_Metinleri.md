@@ -111,7 +111,7 @@ Bu projenin temel amacı; Yalova Üniversitesi idari ve akademik süreçlerine i
    50 tek adımlı ve 50 çok adımlı sorudan oluşan, 2 idari mevzuat uzmanı tarafından doğrulanmış (**Cohen's Kappa $\ge 0.80$**) 100 soruluk özgün "Altın Standart" veri setinin oluşturulması; 5 farklı model konfigürasyonu (M0-M4) üzerinde ablasyon deneylerinin yürütülmesi ve performans artışının **Wilcoxon İşaretli Sıralar Testi ($p < 0.05$)** ile istatistiksel olarak kanıtlanması.
 
 6. **Kullanıcı Kabulü ve Konteynerizasyon:**  
-   Çok turlu konuşma geçmişini destekleyen kullanıcı arayüzünün (Streamlit/FastAPI) ve taşınabilir Docker konteynerinin hazırlanması; 15 idari personel ve 35 öğrenci (toplam 50 kullanıcı) ile yürütülecek testlerde **Sistem Kullanılabilirlik Ölçeği (SUS; Brooke, 1996) skorunun 75/100 (iyi düzey)** üzerinde gerçekleşmesinin sağlanması.
+   Çok turlu konuşma geçmişini destekleyen kullanıcı arayüzünün (Streamlit/FastAPI) ve taşınabilir Docker konteynerinin hazırlanması; öğrenciler, bölüm koordinatörleri ve ilgili akademik/idari süreç paydaşlarından oluşan toplam 50 kullanıcı ile yürütülecek testlerde **Sistem Kullanılabilirlik Ölçeği (SUS; Brooke, 1996) skorunun 75/100 (iyi düzey)** üzerinde gerçekleşmesinin sağlanması.
 
 ---
 
@@ -189,7 +189,7 @@ Her bir model ($M_0$ - $M_4$), aynı 100 altın soru üzerinde ayrı ayrı koşt
    * *Kriter B (Yürürlük ve Sürüm Uygunluğu - 1-5):* Bilgi güncel mevzuata mı dayanıyor, mülga madde içeriyor mu?
    * *Kriter C (Hukuki/İdari Bütünlük - 1-5):* Yanıt yanıltıcı bir hüküm veya hak kaybı riski barındırıyor mu?  
    Puanlayıcılar arası güvenilirlik **Cohen's Kappa ($\kappa$)** ve **Krippendorff's Alpha ($\alpha$)** ile raporlanacaktır.
-3. **Kullanıcı Kabul Testi (SUS):** Sistemin nihai prototipi, 15 idari personel ve 35 öğrenciye test ettirilerek 10 soruluk standart **Sistem Kullanılabilirlik Ölçeği (System Usability Scale - SUS; Brooke, 1996)** anketi uygulanacak ve kullanılabilirlik skoru raporlanacaktır.
+3. **Kullanıcı Kabul Testi (SUS):** Sistemin nihai prototipi; lisans öğrencileri, araştırma görevlileri ve ilgili akademik/idari süreç paydaşlarından oluşan 50 kişilik kullanıcı grubuna test ettirilerek 10 soruluk standart **Sistem Kullanılabilirlik Ölçeği (System Usability Scale - SUS; Brooke, 1996)** anketi uygulanacak ve kullanılabilirlik skoru raporlanacaktır.
 
 ---
 
@@ -338,7 +338,7 @@ Açık kaynaklı temel dil modelinin (8B parametreli) yerel ortamda kuantize edi
 ### 2. Ekonomik/Ticari/Sosyal Çıktılar
 ```text
 - Çalışan Yazılım Prototipi: Üniversite web portallarına kolayca entegre olabilen, Docker konteyneri ile paketlenmiş, çok turlu konuşma geçmişini destekleyen ve mevzuat maddesi düzeyinde doğrulanmış yanıt üreten "Agentic RAG Bilgi Asistanı" çalışan yazılım prototipi elde edilecektir.
-- Ölçülebilir Kullanıcı Kabulü ve Kurumsal Verimlilik: Sistem Kullanılabilirlik Ölçeği (SUS) ile 15 idari personel ve 35 öğrenci üzerinde yürütülecek kullanıcı testlerinde en az 75/100 (iyi düzey) kullanılabilirlik skoru hedeflenmektedir. Öğrencilerin mevzuata 7/24 resmi madde atıflarıyla erişmesi sağlanarak bilgi eksikliğinden kaynaklanan hak kayıpları engellenecek ve idari birimlerin danışma süreçlerinde ölçülebilir bir zaman tasarrufu sağlanacaktır.
+- Ölçülebilir Kullanıcı Kabulü ve Kurumsal Verimlilik: Sistem Kullanılabilirlik Ölçeği (SUS) ile öğrenciler ve ilgili akademik/idari süreç paydaşlarından oluşan 50 kişilik kullanıcı grubu üzerinde yürütülecek testlerde en az 75/100 (iyi düzey) kullanılabilirlik skoru hedeflenmektedir. Öğrencilerin mevzuata 7/24 resmi madde atıflarıyla erişmesi sağlanarak bilgi eksikliğinden kaynaklanan hak kayıpları engellenecek ve idari birimlerin danışma süreçlerinde ölçülebilir bir zaman tasarrufu sağlanacaktır.
 - Açık Kaynak Altyapı Katkısı: Türk idari mevzuat diline özel geliştirilen kural tabanlı regex ayrıştırma algoritmaları ve LangGraph çoklu ajan akış şablonları GitHub üzerinden açık kaynak lisansıyla yayımlanarak diğer üniversiteler için referans bir Ar-Ge çatısı oluşturulacaktır.
 ```
 
