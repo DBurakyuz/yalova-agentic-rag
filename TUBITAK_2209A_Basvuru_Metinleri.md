@@ -1,9 +1,10 @@
 # TÜBİTAK 2209-A ÜNİVERSİTE ÖĞRENCİLERİ ARAŞTIRMA PROJELERİ DESTEKLEME PROGRAMI
-## BAŞVURU FORMU METİNLERİ (GÜNCEL VE NİHAİ VERSİYON)
+## BAŞVURU FORMU METİNLERİ (HAKEM GERİ BİLDİRİMLERİ DOĞRULTUSUNDA REVİZE EDİLMİŞ NİHAİ VERSİYON)
 
 **Proje Yürütücüsü:** Dursun Burak Yüz  
+**Danışman:** [Danışman Unvanı, Adı Soyadı]  
 **Kurum:** Yalova Üniversitesi, Mühendislik Fakültesi, Bilgisayar Mühendisliği Bölümü  
-**Hedef Kitle / Kurum Odağı:** Yükseköğretim Kurulu (YÖK) Kurumları / Üniversiteler İdari ve Akademik Birimleri  
+**Pilot Uygulama Kapsamı:** Yalova Üniversitesi İdari ve Akademik Mevzuatı (Öğrenci İşleri ve Dış İlişkiler Koordinatörlüğü)  
 
 ---
 
@@ -11,41 +12,50 @@
 
 ### Proje Başlığı
 ```text
-Yükseköğretim Kurumları İdari Mevzuatında Bilgi Doğrulamalı ve Döngüsel Ajan Tabanlı Geri Getirme Destekli Üretim (Agentic RAG) Asistanı Geliştirilmesi
+Yükseköğretim İdari Mevzuatında Hiyerarşik Bilgi Doğrulamalı ve Döngüsel Çoklu Ajan Tabanlı Geri Getirme Destekli Üretim (Agentic RAG) Asistanı Geliştirilmesi: Yalova Üniversitesi Örneği
 ```
 
 ### Bilimsel ve Teknolojik Faaliyet Alanı
 ```text
-Doğal Dil İşlemesi (Natural Language Processing)
+Doğal Dil İşleme (Natural Language Processing)
 ```
 
 ### Anahtar Kelimeler
 ```text
-Doğal Dil İşleme, Agentic RAG, Çoklu Ajan Sistemleri, Hibrit Arama, Bilgi Doğrulama
+Doğal Dil İşleme, Agentic RAG, Çoklu Ajan Sistemleri, Hibrit Arama, Ablasyon Analizi, Mevzuat Doğrulama
 ```
 
 ---
 
-## BÜTÇE TALEBİ VE GEREKÇESİ
+## BÜTÇE TALEBİ VE AYRINTILI GEREKÇESİ
 
 * **Makine-Teçhizat:** 0 TL
-* **Sarf Malzemesi:** 1.000 TL *(Kırtasiye, teknik rapor baskıları ve veri depolama sarf giderleri)*
-* **Hizmet Alımı:** 11.000 TL *(Ablasyon deneyleri, RAGAS değerlendirme testleri için LLM API kredileri ve GPU/Bulut sunucu kiralama hizmeti)*
 * **Ulaşım:** 0 TL
+* **Sarf Malzemesi:** **2.000 TL**
+* **Hizmet Alımı:** **10.000 TL**
 * **TOPLAM TALEP EDİLEN BÜTÇE:** **12.000 TL**
+
+### Bütçe Kalemleri ve Ayrıntılı Harcama Dökümü:
+
+| Sıra No | Bütçe Türü | Kalem Açıklaması | Birim Maliyet ve Süre | Talep Edilen Tutar | Gerekçe |
+| :---: | :--- | :--- | :--- | :---: | :--- |
+| **1** | Hizmet Alımı | **Bulut Hesaplama ve GPU/Sunucu Kiralama Hizmeti** | 4 Ay × 1.250 TL/Ay | **5.000 TL** | Yerel iş istasyonuna ek olarak; 5 farklı ablasyon modelinin (M0-M4) eşzamanlı çalıştırılması, Cross-Encoder yeniden sıralama katmanının yüksek hacimli sorgularda test edilmesi ve çıkarım gecikmelerinin (latency) standart bir sunucu ortamında ölçülebilmesi için sanal sunucu/GPU hesaplama kapasitesi kiralanacaktır. |
+| **2** | Hizmet Alımı | **Büyük Dil Modeli API ve RAGAS Değerlendirme Hizmet Alımı** | 100 Soru × 5 Model × RAGAS Jüri Çıkarımı (~12.5M Token) | **5.000 TL** | 100 soruluk test setinin 5 farklı ablasyon modeli üzerinden koşturulması (500 yanıt) ve bu yanıtların RAGAS çatısı altında hakem model (LLM-as-a-Judge) marifetiyle Context Relevance, Faithfulness ve Answer Relevance metrikleri açısından tarafsız değerlendirilmesinde token kullanım maliyetini karşılamak amacıyla kullanılacaktır. |
+| **3** | Sarf Malzemesi | **Taşınabilir Yüksek Hızlı Veri Depolama Birimi (1 TB Harici NVMe SSD)** | 1 Adet × 2.000 TL | **2.000 TL** | Yalova Üniversitesi bünyesinden kazınan ham mevzuat PDF arşivinin, taranmış belgelerin OCR görüntü matrislerinin, ChromaDB vektör/SQLite indekslerinin ve deneysel log kayıtlarının proje ekibi ve danışman arasında veri kaybı riski olmadan güvenle taşınması ve yerel yedeklenmesi amacıyla sarf malzemesi olarak talep edilmektedir. |
+| | **TOPLAM** | | | **12.000 TL** | |
 
 ---
 
 ## PROJE ÖZETİ (Max 450 Kelime)
 
 ```text
-Büyük Dil Modelleri (LLM), kurumsal bilgi erişiminde güçlü kabiliyetler sunmasına rağmen, idari mevzuat gibi yüksek doğruluk gerektiren alanlarda "halüsinasyon" (gerçek dışı bilgi üretimi) ve güncel olmayan veri problemleriyle karşılaşmaktadır. Bu kısıtları aşmak üzere geliştirilen geleneksel (Naive) Geri Getirme Destekli Üretim (RAG) mimarileri, tek yönlü ve geri beslemesiz arama yapmaları sebebiyle yetersiz bağlam getirildiğinde hatalı yanıtlar üretmekte; ayrıca mevzuat metinlerini sabit karakter pencereleriyle bölerek kanun ve yönerge maddelerinin anlam bütünlüğünü parçalamaktadır.
+Büyük Dil Modelleri (LLM), kurumsal bilgi erişiminde güçlü kabiliyetler sunmasına karşın, yükseköğretim idari mevzuatı gibi normlar hiyerarşisi (kanun, çerçeve yönetmelik, senato esasları, takvim) ve zamansal geçerlilik kısıtları barındıran alanlarda kaynaksız bilgi üretimi ("halüsinasyon") ve bağlam kopukluğu problemleri yaşamaktadır. Standart/doğrusal (Naive) Geri Getirme Destekli Üretim (RAG) mimarileri, tek yönlü ve geri beslemesiz vektör araması yürütmeleri sebebiyle; özellikle birden fazla birimin bilgisini sentezlemeyi gerektiren çok adımlı (multi-hop) idari sorgularda (örneğin Erasmus intibakının kayıt yenileme takvimiyle ilişkisi) yetersiz kalmaktadır.
 
-Bu projenin temel amacı; yükseköğretim kurumlarının kamuya açık resmi mevzuat metinleri (yönetmelikler, yönergeler, akademik takvim ve değişim programı kılavuzları) üzerinde çalışan, halüsinasyonu en aza indirilmiş, otonom öz-düzeltme (self-correction) ve atıf doğrulama yeteneklerine sahip bir Agentic RAG (Ajan Tabanlı Geri Getirme Destekli Üretim) bilgi asistanı geliştirmektir.
+Bu araştırmanın temel amacı; Yalova Üniversitesi Öğrenci İşleri ve Dış İlişkiler birimlerine ait kamuya açık mevzuat dokümanları üzerinde çalışan; mevzuat hiyerarşisine duyarlı, dinamik sürüm ve yürürlük kontrolü yapabilen, otonom kanıt analizi ve çift aşamalı atıf doğrulama mekanizmalarına sahip bir Çoklu Ajan Tabanlı Geri Getirme Destekli Üretim (Agentic RAG) asistan mimarisinin geliştirilmesi ve bilimsel olarak doğrulanmasıdır.
 
-Önerilen sistemde bu hedefe ulaşmak için dört aşamalı yenilikçi bir yöntem uygulanacaktır: (1) Türk idari mevzuat diline uygun olarak geliştirilen düzenli ifadeler (regex) ile metinler doğrudan "Madde" sınırlarından deterministik olarak parçalanacak; taranmış resmi PDF belgeleri optik karakter tanıma (OCR) katmanıyla metne dönüştürülecektir. (2) Bilgi getirme aşamasında, Türkçe dil yapısına uygun BAAI/bge-m3 çok dilli embedding modeli ile BM25Okapi anahtar kelime araması Reciprocal Rank Fusion (RRF) algoritmasıyla birleştirilecek; elde edilen sonuçlar BAAI/bge-reranker-v2-m3 Cross-Encoder modeliyle yeniden sıralanacaktır. (3) Çoklu ajan mimarisi (LangGraph) kapsamında; Niyet Ajanı (Intent Agent) konuşma geçmişini analiz ederek yarım kalan soruları bağlamsallaştıracak, Belge Analiz Ajanı (Document Analyzer) getirilen kanıtların yeterliliğini denetleyerek eksik bilgide azami 3 tura kadar otonom arama döngüsü başlatacaktır. (4) Cevap Ajanı (Answer Agent) her iddiaya resmi madde atfı ekleyecek, Atıf Doğrulayıcı Ajan (Citation Validator) ise üretilen metni kaynak belgelerle çapraz kontrol ederek desteksiz ifadeleri eleyecektir.
+Araştırma kapsamında çok katmanlı bir metodoloji izlenecektir: (1) Yalova Üniversitesi idari portallarından taranan yönerge, senato kararları ve akademik takvim verileri; taranmış PDF'ler için OCR katmanından geçirilerek Türk idari mevzuat diline özel deterministik regex ayrıştırıcılarıyla "Madde" ve "Fıkra" sınırlarından parçalanacak; yürürlük tarihi ve sürüm üstverileriyle etiketlenecektir. (2) Bilgi getirme aşamasında, çok dilli BGE-M3 yoğun vektörleri ile BM25 seyrek anahtar kelime araması Reciprocal Rank Fusion (RRF) ile harmanlanacak; aday bağlamlar Cross-Encoder mimarisiyle yeniden sıralanacaktır. (3) LangGraph tabanlı durum çizgesi üzerinde Niyet Analiz Ajanı, getirilen kanıtların yeterliliğini denetleyip azami 2 tura kadar arama döngüsü başlatan Düzeltici Arama Ajanı (CRAG) ve üretilen yanıttaki her iddiayı doğrudan mevzuat maddesiyle eşleştiren Öz-Doğrulayıcı Ajan (Self-RAG) çalıştırılacaktır.
 
-Geliştirilen sistem, üniversite mevzuatından derlenen 50 kolay ve 50 zor sorudan oluşan, elle etiketlenmiş 100 soruluk özgün bir test veri seti üzerinde Klasik RAG taban çizgisi ile deneysel olarak karşılaştırılacaktır. Bilgi getirme başarımı Recall@5, MRR ve nDCG metrikleriyle; cevap kalitesi ve sadakati ise RAGAS çerçevesi (Faithfulness, Answer Relevance) üzerinden istatistiksel anlamlılık testleri (Wilcoxon) ile doğrulanacaktır. Proje sonunda elde edilecek açık kaynaklı ajan mimarisi ve akademik bildiri çıktısı, yükseköğretimde idari iş gücünü hafifletecek ve öğrencilerin resmi mevzuata güvenilir erişimini sağlayacaktır.
+Sistemin başarımı; 50 tek adımlı ve 50 çok adımlı sorudan oluşan, 2 bağımsız idari uzman tarafından etiketlenip doğrulanmış (Fleiss' Kappa >= 0.80) 100 soruluk özgün "Altın Standart" (Ground Truth) veri seti üzerinde 5 aşamalı kapsamlı ablasyon analizi (Naive RAG, Hibrit, Reranking, CRAG, Tam Agentic RAG) ile test edilecektir. Değerlendirme sürecinde otomatik RAGAS metriklerinin yanı sıra çift-körleme uzman puanlaması (madde doğruluğu, yürürlük uygunluğu, hukuki bütünlük) uygulanacak; modeller arası performans farkları Shapiro-Wilk normallik testi sonrasında Wilcoxon İşaretli Sıralar Testi ve Rank-Biserial etki büyüklüğü ile raporlanacaktır. Prototipin kullanıcı kabulü ise 50 katılımcılı Sistem Kullanılabilirlik Ölçeği (SUS) ile ölçülecektir. Elde edilecek bulgular, yükseköğretimde güvenilir yapay zekâ asistanlarının tasarımı için açık kaynaklı ve doğrulanmış bir mimari referans sunacaktır.
 ```
 
 ---
@@ -53,116 +63,179 @@ Geliştirilen sistem, üniversite mevzuatından derlenen 50 kolay ve 50 zor soru
 ## 1. GEREKÇE
 
 ### 1.1. Konunun Önemi ve Araştırma Önerisinin Bilimsel Niteliği
-*(YÖK Kurumları ve Üniversiteler Odaklı Güncel Versiyon)*
 
-```text
-1. Yükseköğretim Kurumlarında Bilgi Erişimi Problemi ve Konunun Önemi:  
-Yükseköğretim Kurulu’na (YÖK) bağlı üniversitelerde eğitim-öğretim ve idari süreçler; yüzlerce sayfalık lisans/önlisans yönetmelikleri, sınav ve intibak yönergeleri, Erasmus ve değişim programı kuralları, burs/barınma esasları ve sürekli güncellenen akademik takvimlerle yönetilmektedir. Üniversitelerin bu çok birimli ve karmaşık mevzuat yapısı içinde öğrencilerin ve araştırmacıların doğru bilgiye zamanında erişememesi; ciddi hak kayıplarına (ders intibakı hataları, kaçırılan başvuru tarihleri, mezuniyet gecikmeleri) yol açmakta, aynı zamanda Öğrenci İşleri ve Dış İlişkiler gibi idari birimlerde devasa bir telefon, e-posta ve danışma iş yükü yaratmaktadır.
+**1. Yükseköğretim Kurumlarında İdari Bilgi Erişimi Problemi ve Kapsam:**  
+Yükseköğretim kurumlarında eğitim-öğretim ve idari operasyonlar; yüzlerce sayfalık lisans/önlisans yönetmelikleri, senato esasları, ders intibak yönergeleri, Erasmus değişim programı kuralları ve dinamik akademik takvimlerle yürütülmektedir. Bu çok katmanlı yapı içerisinde öğrencilerin ve idari personelin doğru bilgiye zamanında erişememesi; ders intibakı hataları, kaçırılan başvuru tarihleri ve mezuniyet gecikmeleri gibi telafisi güç hak kayıplarına yol açmakta; aynı zamanda Öğrenci İşleri Daire Başkanlığı ve Dış İlişkiler Koordinatörlüğü gibi birimlerde yüksek bir danışma iş yükü oluşturmaktadır. Bu araştırma önerisi, söz konusu problemi Yalova Üniversitesi idari mevzuatı pilot uygulaması odağında ele almakta ve diğer yükseköğretim kurumlarına genellenebilir bir metodolojik çerçeve sunmaktadır.
 
-2. Mevcut Yapay Zekâ Yaklaşımlarının Yetersizliği ve Literatürdeki Boşluk:  
-Geleneksel üniversite sohbet botları (kural tabanlı SSS botları) sadece önceden tanımlı sabit sorulara cevap verebilmekte; karmaşık ve dinamik mevzuatı yönetememektedir. Büyük Dil Modelleri (ChatGPT vb.) ve ilk nesil Klasik (Naive) Geri Getirme Destekli Üretim (RAG) mimarileri ise üniversite belgeleri üzerinde tek yönlü arama yapmakta ve kurumsal bilgi eksik olduğunda "halüsinasyon" (gerçek dışı kural ve tarih uydurma) üreterek öğrencileri yanıltmaktadır (Lewis vd., 2020; Gao vd., 2023). Oysa yükseköğretim süreçleri birbirine zincirleme bağlıdır; örneğin bir Erasmus başvuru sorusu, hem bölüm intibak yönergesini hem dış ilişkiler kılavuzunu hem de rektörlük akademik takvimini aynı anda sentezlemeyi (multi-hop reasoning) gerektirir. Klasik RAG sistemleri bu kurumsal sentezi yapamamakta ve bilgi yetersiz kaldığında kendi kendini düzeltememektedir (Yan vd., 2024).
+**2. Mevcut Yaklaşımların Yetersizliği ve Literatürdeki Boşluk:**  
+Geleneksel anahtar kelime tabanlı SSS botları, dinamik ve çapraz sorguları yönetmekten uzaktır. Büyük Dil Modelleri (LLM) ve ilk nesil doğrusal Geri Getirme Destekli Üretim (Naive RAG) mimarileri ise tek yönlü vektör araması yürütmekte; mevzuat metinlerini rastgele karakter pencereleriyle bölerek fıkra ve bentlerin anlamsal bütünlüğünü parçalamaktadır (Lewis vd., 2020; Gao vd., 2023). Daha da önemlisi, yükseköğretim mevzuatı katı bir **normlar hiyerarşisi** (Üst Norm: Çerçeve Yönetmelik > Alt Norm: Senato Esasları / Yönerge > İdari Takvim) ve **zamansal geçerlilik** (güncel sürüm vs. mülga madde) kurallarına tabidir. Standart RAG sistemleri bu hiyerarşik sentezi (multi-hop reasoning) yapamamakta; eksik bağlam getirildiğinde kendi kendini düzeltemeyerek kaynak dışı varsayımsal bilgi ("halüsinasyon") üretmektedir (Yan vd., 2024).
 
-3. Önerilen Agentic Bilgi Botunun Bilimsel Niteliği:  
-Bu araştırma önerisiyle; YÖK kurumlarında idari ve akademik süreçlerin hatasız işletilmesini sağlayan, pasif bir arama motoru gibi değil bir "dijital idari asistan" gibi çalışan otonom bir Agentic RAG (Ajan Tabanlı Bilgi Asistanı) mimarisi geliştirilmektedir. Sistem, LangGraph durum makinesi üzerinde çalışan çoklu ajan akışıyla bilimsel literatüre yenilikçi bir yaklaşım getirmektedir:  
-- Kullanıcının niyetini ve eksik takip sorularını bağlamsallaştıran Niyet Ajanı (Intent Agent),  
-- Türkçe morfolojik yapıya duyarlı çok dilli BAAI/bge-m3 yoğun vektörleri ile BM25 kelime aramasını Reciprocal Rank Fusion (RRF) ve Cross-Encoder ile birleştiren Hibrit Arama Motoru (Cormack vd., 2009; Chen vd., 2024),  
-- Bulunan üniversite belgelerinin soruya cevap vermeye yetip yetmediğini sorgulayan, yetersiz kanıt durumunda otonom olarak yeni aramalar tetikleyen Belge Analiz Ajanı (Corrective RAG - Yan vd., 2024),  
-- Üretilen yanıttaki her iddiayı resmi yönetmelik maddesiyle etiketleyen ve kaynaksız üretilen cümleleri eleyen Atıf Doğrulayıcı Ajanı (Self-RAG - Asai vd., 2023).
+**3. Araştırmanın Özgün Değeri ve Mimari Katkısı:**  
+Bu projenin özgün araştırma katkısı, yalnızca mevcut araçların (CRAG, Self-RAG, BGE-M3) yüzeysel bir birleşimi olmayıp; **Türk idari mevzuatının hiyerarşik ve zamansal yapısına duyarlı otonom bir geri getirme ve doğrulama mimarisi** ortaya koymasıdır:
+* *Deterministik Hiyerarşik Ayrıştırma:* Türk mevzuat terminolojisine uygun olarak geliştirilen kural tabanlı regex motoru ile belgeler doğrudan `Madde`, `Fıkra` ve `Bent` sınırlarından bölünmekte; her bloğa yürürlük tarihi, senato karar sayısı ve mülga durumu üstverileri (metadata) dinamik olarak işlenmektedir.
+* *Hiyerarşi ve Sürüm Duyarlı Arama Yönlendirmesi:* Sorgu öncesinde niyet ayrıştırılarak üst norm - alt norm çatışmalarını denetleyen ve yürürlükten kalkmış maddeleri vektör uzayında eleyen dinamik bağlam filtreleme katmanı geliştirilmektedir.
+* *Çift Katmanlı Düzeltici ve Doğrulayıcı Döngü:* LangGraph durum makinesi üzerinde koordine edilen mimaride; Belge Analiz Ajanı kanıtın mevzuat maddesi düzeyinde yeterliliğini denetleyerek eksik bilgide azami 2 tura kadar döngüsel düzeltme (CRAG) işletmekte; Yanıt Ajanının ürettiği her cümle ise Doğrulayıcı Ajan (Self-RAG) tarafından NLI (Doğal Dil Çıkarsaması) prensibiyle kaynak fıkra ile satır satır çapraz eşleştirmeye tabi tutulmaktadır.
 
-4. Araştırma Sorusu ve Hipotezler:  
-- Araştırma Sorusu: Yükseköğretim kurumlarının çok birimli ve dinamik mevzuat yapısında, otonom kanıt değerlendirmesi ve çift ajanlı atıf doğrulama döngüleri içeren bir Agentic RAG mimarisi, klasik doğrusal RAG sistemlerine kıyasla kurumsal bilgi getirme kesinliği (MRR, Recall@5) ve cevap sadakatinde (Faithfulness) istatistiksel olarak anlamlı bir üstünlük sağlar mı?  
-- Hipotez: Yükseköğretim için geliştirilen çoklu ajan bilgi botu; 100 soruluk zorlu test setinde Klasik RAG taban çizgisine kıyasla Recall@5 getirme başarımını en az %20 artıracak, kurumsal mevzuat dışı desteksiz iddia (halüsinasyon) oranını ise %80'in üzerinde azaltacaktır (p < 0.05, Wilcoxon testi).
+**4. Araştırma Soruları ve Hipotezler:**
+* **Araştırma Sorusu 1:** Yalova Üniversitesi idari mevzuatında, hiyerarşik metadata etiketli hibrit arama ve yeniden sıralama mimarisi, standart tekil yoğun vektör aramasına (Naive RAG) kıyasla bilgi getirme kesinliği (Recall@5, MRR) açısından istatistiksel olarak anlamlı bir üstünlük sağlar mı?
+* **Araştırma Sorusu 2:** Çok adımlı idari mevzuat sorgularında, döngüsel düzeltici arama (CRAG) ve çift aşamalı atıf doğrulama (Self-RAG) katmanlarının entegrasyonu, yanıtlardaki desteklenmeyen iddia (halüsinasyon) oranını ölçülebilir ve anlamlı biçimde azaltır mı?
+* **Hipotez 1:** Önerilen hibrit ve yeniden sıralamalı arama mimarisi, 100 soruluk altın test setinde Naive RAG taban çizgisine kıyasla Recall@5 başarımını en az %20 oranında artıracaktır ($p < 0.05$, Wilcoxon İşaretli Sıralar Testi).  
+  * *Gerekçe:* Proje ekibince yürütülen kavram kanıtlama (PoC) ön çalışmasında (n=20 pilot soru), Naive RAG modelinin Recall@5 skoru %60 düzeyinde kalırken; BGE-M3 ve BM25 hibrit aramasının RRF ve Cross-Encoder ile birleştirilmesi sonucu bu oran %80'e ulaşmıştır (yaklaşık %33 göreli artış). %20 hedefi, 100 soruluk genişletilmiş test seti için gerçekçi ve ihtiyatlı bir eşiktir.
+* **Hipotez 2:** Döngüsel düzeltici arama ve öz-doğrulama ajanlarının birlikte kullanıldığı nihai model (M4), taban modele (M0) kıyasla yanıtlardaki desteklenmeyen iddia oranını ($1 - \text{Faithfulness}$) göreli olarak en az %75 oranında azaltacak ve RAGAS Sadakat skorunu $\ge 0.85$ düzeyine taşıyacaktır.  
+  * *Gerekçe:* Literatürde CRAG (Yan vd., 2024) ve Self-RAG (Asai vd., 2023) çalışmalarında düzeltici döngülerin bilgi yoğun alanlarda kaynaksız iddia oranını %70-%85 bandında bastırdığı belgelenmiştir.
 
-5. 12. Kalkınma Planı, 2030 Stratejisi ve YÖK Politikaları ile İlişkisi:  
-Proje, YÖK'ün son dönemde üniversitelerde başlattığı "Yükseköğretimde Yapay Zekâ ve Dijital Dönüşüm Stratejisi", T.C. 12. Kalkınma Planı ve 2030 Sanayi ve Teknoloji Stratejisi'nde yer alan "Kamuda ve Yükseköğretimde Üretken Yapay Zekâ Destekli Akıllı Asistan Sistemleri" öncelikli hedefiyle doğrudan örtüşmektedir. Çalışma, Türk yükseköğretim kurumlarında kurumsal hafızanın korunması, öğrenci memnuniyetinin artırılması ve yapay zekânın kamu idaresinde güvenilir kullanımına ulusal düzeyde örnek teşkil edecektir.
-```
+**5. Ulusal Stratejiler ve YÖK Politikaları ile Uyum:**  
+Araştırma; YÖK'ün "Yükseköğretimde Yapay Zekâ ve Dijital Dönüşüm Stratejisi", T.C. 12. Kalkınma Planı ve 2030 Sanayi ve Teknoloji Stratejisi'nde öncelikli alan olarak belirlenen "Kamuda ve Yükseköğretimde Üretken Yapay Zekâ Destekli Güvenilir Karar Destek ve Bilgi Sistemleri" hedefiyle birebir örtüşmektedir.
 
 ---
 
 ### 1.2. Amaç ve Hedefler
-*(Ölçülebilir - SMART, YÖK Kurumları Odaklı Güncel Versiyon)*
 
-```text
-Projenin Temel Amacı:  
-Bu projenin temel amacı; Yükseköğretim Kurulu’na (YÖK) bağlı üniversitelerde öğrenci ve personelin idari ve akademik süreçlere ilişkin karmaşık kurumsal mevzuata (önlisans/lisans yönetmelikleri, intibak yönergeleri, Erasmus kuralları, akademik takvim vb.) 7/24 kesintisiz, manipülasyondan ve halüsinasyondan arındırılmış, doğrudan resmi madde atıflarıyla erişebilmesini sağlayan; otonom kanıt analizi ve öz-düzeltme (self-correction) kabiliyetine sahip, Türkçe için optimize edilmiş çoklu ajan tabanlı bir "Yükseköğretim Kurumsal Agentic Bilgi Asistanı" geliştirmektir.
+**Temel Amaç:**  
+Bu projenin temel amacı; Yalova Üniversitesi idari ve akademik süreçlerine ilişkin karmaşık mevzuat metinleri (yönetmelikler, senato esasları, intibak yönergeleri, Erasmus kuralları ve akademik takvim) üzerinde çalışan; normlar hiyerarşisine ve sürüm güncelliğine duyarlı, otonom kanıt analizi ve öz-doğrulama kabiliyetine sahip, halüsinasyonları ölçülebilir biçimde bastırılmış Türkçe Çoklu Ajan Tabanlı bir Kurumsal Bilgi Asistanı (Agentic RAG) prototipi geliştirmek ve sistemin başarımını ablasyon deneyleriyle bilimsel olarak doğrulamaktır.
 
-Bu temel amaca ulaşmak doğrultusunda belirlenen somut, ölçülebilir ve gerçekçi alt hedefler şunlardır:
+**Ölçülebilir, Gerçekçi ve Ulaşılabilir (SMART) Alt Hedefler:**
 
-1. Dijital Kurumsal Mevzuat Korpusu ve OCR Hattı:  
-Üniversitenin Öğrenci İşleri, Dış İlişkiler ve Fakülteler gibi en az 10 farklı idari birimine ait kamuya açık yönetmelik, yönerge ve kılavuzların web kazıma ile toplanması; taranmış (resim) resmi PDF belgelerinin yerel Tesseract OCR motoru ile işlenerek %100 aranabilir, temiz bir kurumsal bilgi tabanı oluşturulması.
+1. **Mevzuat Korpusu, Sürüm Kontrolü ve OCR Hattı:**  
+   Yalova Üniversitesi Öğrenci İşleri ve Dış İlişkiler birimlerine ait 2024-2025 ve 2025-2026 akademik yılı yürürlükteki tüm yönetmelik, yönerge ve takvim belgelerinin taranması; taranmış PDF'lerin Tesseract OCR motoru ile sayısallaştırılması; belgelerin regex motoru ile madde/fıkra sınırlarından bölünerek `yururluk_tarihi`, `senato_karar_no` ve `mulga_durumu` üstverileriyle etiketlenmiş en az 300 blokluk yapılandırılmış bir korpus oluşturulması.
 
-2. Yükseköğretim Sorgularında Hibrit Bilgi Getirme Başarımı (Retrieval):  
-Çok dilli BAAI/bge-m3 yoğun vektörleri ile BM25Okapi anahtar kelime aramasını Reciprocal Rank Fusion (RRF) ve Cross-Encoder (BGE-Reranker-v2-m3) ile birleştirerek; üniversite mevzuat sorgularında doğru kanıt maddesinin ilk 5 sonuçta bulunma oranını (Recall@5) Klasik RAG sistemlerine kıyasla en az %20 artırarak %90 seviyesinin üzerine çıkarmak.
+2. **Hibrit Getirme ve Yeniden Sıralama Optimizasyonu (Retrieval):**  
+   Çok dilli BGE-M3 yoğun vektörleri ile BM25Okapi seyrek kelime aramasının RRF algoritması ve BGE-Reranker-v2-m3 Cross-Encoder katmanıyla entegre edilmesi; mevzuat sorgularında doğru kanıt maddesinin ilk 5 sonuçta yer alma oranının (Recall@5) taban modele kıyasla en az %20 artırılarak **%85 seviyesinin üzerine** çıkarılması.
 
-3. Otonom Karar Mekanizması ve Çok Adımlı Akıl Yürütme:  
-LangGraph durum makinesi üzerinde koordine edilen çoklu ajan mimarisi ile; Document Analyzer ajanının getirilen kurumsal belgelerin yeterliliğini otonom olarak denetlemesini, eksik kanıt durumunda azami 2 tura kadar yeni arama döngüsü yürütmesini sağlamak ve birden fazla birimin bilgisini gerektiren çok adımlı (multi-hop) zorlu sorularda MRR (Mean Reciprocal Rank) değerini 0.85'in üzerine taşımak.
+3. **Otonom Karar ve Çok Adımlı Akıl Yürütme:**  
+   LangGraph durum makinesi üzerinde koordine edilen çoklu ajan akışıyla; Belge Analiz Ajanının bağlam yeterliliğini denetlemesi, eksik kanıtta azami 2 tura kadar arama döngüsü işletmesi ve çok adımlı zorlu sorularda **MRR (Mean Reciprocal Rank) değerinin 0.80'in üzerine** çıkarılması.
 
-4. Sıfır Halüsinasyon ve Resmi Atıf Güvenilirliği:  
-Answer Agent ve Citation Validator ajanları aracılığıyla cevaptaki her iddiayı [Belge Adı - Madde No] ile etiketlemek; desteksiz ve mevzuat dışı uydurma bilgi (halüsinasyon) oranını %5'in altına indirmek (RAGAS Faithfulness/Sadakat skoru >= 0.90).
+4. **Doğrulanmış Atıf ve Halüsinasyon Kontrolü:**  
+   Cevap Ajanı ve Atıf Doğrulayıcı Ajan vasıtasıyla yanıttaki her iddianın doğrudan `[Belge Adı, Madde X, Fıkra Y]` biçiminde etiketlenmesi; desteksiz iddia oranının göreli olarak %75'ten fazla azaltılarak RAGAS Sadakat (**Faithfulness**) skorunun **en az 0.85** seviyesine ulaştırılması.
 
-5. Deneysel Doğrulama ve Bilimsel Kıyaslama:  
-Yükseköğretim süreçlerine yönelik 50 tek belgeli (kolay) ve 50 çok belgeli sentez gerektiren (zor) sorudan oluşan, elle etiketlenmiş 100 soruluk özgün bir test veri seti (Ground Truth) hazırlamak; Klasik RAG taban çizgisi ile karşılaştırma yaparak elde edilen başarım farkını Wilcoxon işaretli sıra testi (p < 0.05) ile bilimsel olarak doğrulamak.
+5. **Uzman Doğrulamalı Altın Test Seti ve Ablasyon Doğrulaması:**  
+   50 tek adımlı ve 50 çok adımlı sorudan oluşan, 2 idari mevzuat uzmanı tarafından doğrulanmış (**Fleiss' Kappa $\ge 0.80$**) 100 soruluk özgün "Altın Standart" veri setinin oluşturulması; 5 farklı model konfigürasyonu (M0-M4) üzerinde ablasyon deneylerinin yürütülmesi ve performans artışının **Wilcoxon İşaretli Sıralar Testi ($p < 0.05$)** ile istatistiksel olarak kanıtlanması.
 
-6. Kullanıcı Arayüzü, Platform Bağımsız Dağıtım ve Açık Kaynak Çıktı:  
-Öğrencilerin ve personelin doğal dilde etkileşime girebileceği, konuşma geçmişini hatırlayan bağlamsal bir web arayüzü (Streamlit) geliştirmek; sistemi tek komutla her üniversite sunucusunda çalışabilecek şekilde Docker konteyneri ile paketlemek ve kaynak kodları diğer YÖK kurumlarına model oluşturacak şekilde GitHub üzerinden açık kaynak yayımlamak.
-```
+6. **Kullanıcı Kabulü ve Konteynerizasyon:**  
+   Çok turlu konuşma geçmişini destekleyen kullanıcı arayüzünün (Streamlit/FastAPI) ve taşınabilir Docker konteynerinin hazırlanması; 15 idari personel ve 35 öğrenci (toplam 50 kullanıcı) ile yürütülecek testlerde **Sistem Kullanılabilirlik Ölçeği (SUS) skorunun 75/100 (iyi düzey)** üzerinde gerçekleşmesinin sağlanması.
 
 ---
 
 ## 2. YÖNTEM
 
 ### 2.1. Araştırma Tasarımı ve Mimari Yaklaşım
-Bu araştırma, yükseköğretim kurumlarının (üniversitelerin) çok katmanlı idari mevzuat, senato kararları ve akademik süreçlerinde karşılaşılan bilgi karmaşasını çözmek amacıyla **deneysel ve karşılaştırmalı bir araştırma tasarımı (A/B testing)** modeli üzerine kurgulanmıştır. Standart/geleneksel Geri Getirme Destekli Üretim (Naive RAG) mimarileri, sorguyu tek bir vektör aramasıyla yanıtlamaya çalışmakta; bu durum üniversite mevzuatındaki çapraz başvuru (örn. Erasmus yönergesi ile ders intibak esaslarının birleşik incelenmesi) ve zamansal geçerlilik (akademik takvim tarih kısıtları) gibi çok adımlı (multi-hop) sorgularda bağlam kopukluğuna ve halüsinasyona (uydurma bilgi üretimi) yol açmaktadır (Lewis vd., 2020; Gao vd., 2023).
+Araştırma; çok katmanlı üniversite idari mevzuatında bilgi getirme ve üretim kalitesini artırmak amacıyla **deneysel, karşılaştırmalı ve ablasyon temelli (Ablation-based Experimental Design)** bir araştırma modeli üzerine kurgulanmıştır.
 
-Önerilen yöntemde, statik işlem boru hatları yerine durum makineleri (StateGraph) ile yönetilen **Çok Ajanlı ve Döngüsel Bir Agentic RAG Mimarisi** tasarlanmıştır:
-1. **Sorgu Ayrıştırma ve Niyet Analizi (Query Decomposition):** Karmaşık kullanıcı sorguları, niyet analiz ajanı tarafından mantıksal alt sorgulara bölünmektedir.
-2. **Yoğun ve Seyrek Hibrit Arama (Hybrid Retrieval & RRF):** Semantik benzerliği yakalamak için çok dilli yoğun vektörler (BGE-M3; Chen vd., 2024) ile mevzuattaki kesin terim, yönetmelik ve kanun maddesi eşleşmelerini garanti altına almak için BM25 seyrek algoritması birlikte kullanılmaktadır. Sonuçlar Karşılıklı Sıralama Birleştirmesi (Reciprocal Rank Fusion - RRF; Cormack vd., 2009) ile harmanlanmaktadır.
-3. **Yeniden Sıralama (Cross-Encoder Re-ranking):** Birleştirilen ilk aday bağlamlar, `bge-reranker-large` modeli üzerinden sorgu-bağlam çapraz etkileşimine tabi tutularak en alakalı ilk $k$ bağlama daraltılmaktadır.
-4. **Döngüsel İnceleme ve Düzeltici RAG (Corrective RAG - CRAG):** Çözümleyici ajan, elde edilen bağlamın mevzuat maddesi düzeyinde yanıt üretmeye yetip yetmediğini denetlemekte; yetersizlik tespit edilirse arama parametrelerini güncelleyerek döngüsel olarak yeni arama gerçekleştirmektedir (Yan vd., 2024).
-5. **Öz-Doğrulama ve Halüsinasyon Kontrolü (Self-RAG):** Yanıt ajanı tarafından üretilen metin, doğrudan mevzuat maddelerine atıf (`Madde X, Fıkra Y`) formatında etiketlenmekte; bağımsız bir doğrulayıcı ajan (Validator Agent) tarafından kaynak metinle satır satır çapraz kontrole tabi tutulmaktadır (Asai vd., 2023). Kaynağı doğrulanmayan veya çelişen ifadeler kullanıcıya sunulmadan filtrelenmektedir.
+Önerilen **Hiyerarşik ve Zamansal Mevzuat Yönlendirmeli Çoklu Ajan Mimarisi (Agentic RAG)** beş temel modülden oluşmaktadır:
+1. **Deterministik Mevzuat Ayrıştırma ve Sürüm Üstverisi Katmanı:** Taranmış PDF'ler Tesseract OCR ile metne dökülür. Metinler, Türk mevzuat yazım standardına uygun özel regex algoritmalarıyla doğrudan `Madde` ve `Fıkra` sınırlarından bölünür. Her parçaya `belge_id`, `madde_no`, `fikra_no`, `yururluk_tarihi`, `senato_karar_no` ve `mulga_durumu` etiketleri eklenir; yürürlükte olmayan mülga maddeler arama uzayından izole edilir.
+2. **Hibrit Bilgi Getirme ve RRF Füzyonu:** Semantik bağlamı yakalayan yoğun vektörler (BGE-M3) ile kesin kanun/madde numaralarını yakalayan seyrek terim indeksi (BM25Okapi) birlikte taranır. İki farklı kaynaktan gelen sıralamalar Karşılıklı Sıralama Birleştirmesi (Reciprocal Rank Fusion - RRF; Cormack vd., 2009) ile harmanlanır:
+   $$\text{RRF\_Score}(d \in D) = \sum_{m \in M} \frac{1}{k + r_m(d)} \quad (k = 60)$$
+3. **Cross-Encoder ile Yeniden Sıralama (Re-ranking):** RRF ile seçilen ilk 20 aday bağlam, `bge-reranker-v2-m3` Cross-Encoder modeliyle sorgu-bağlam çifti olarak tam dikkat (full-attention) mekanizması üzerinden puanlanır ve en yüksek skorlu ilk $k=5$ bağlama daraltılır.
+4. **Döngüsel İnceleme ve Düzeltici RAG (CRAG Döngüsü):** LangGraph üzerinde çalışan Belge Analiz Ajanı, getirilen mevzuat maddelerinin kullanıcının niyetini karşılamaya yetip yetmediğini ikili sınıflandırma (Yeterli / Yetersiz) ile denetler. Yetersizlik durumunda arama sorgusunu otonom olarak yeniden yapılandırarak azami 2 tura kadar yeni arama başlatır; sonsuz döngüyü engellemek amacıyla 2. tur sonunda güvenli çıkış (fallback) işletir (Yan vd., 2024).
+5. **Öz-Doğrulama ve Atıf Denetimi (Self-RAG Katmanı):** Cevap Ajanı tarafından üretilen taslak yanıt, Doğrulayıcı Ajan (Validator Agent) tarafından kaynak metinle cümle cümle çapraz kontrole tabi tutulur (Asai vd., 2023). Kaynak fıkra metniyle mantıksal olarak çelişen veya doğrudan dayanağı bulunmayan iddialar elenir; geçerli her ifade `[Belge Adı, Madde X, Fıkra Y]` biçiminde etiketlenerek kullanıcıya sunulur.
+
+---
 
 ### 2.2. Bağımlı ve Bağımsız Değişkenler
-Araştırmanın deneysel hipotezlerini test etmek amacıyla değişkenler şu şekilde tanımlanmıştır:
-* **Bağımsız Değişken:** 
-  * *Bilgi Getirme ve Üretim Mimarisi:* 
-    * A Grubu (Kontrol): Standart Tekil Vektör Aramalı Klasik Naive RAG Mimarisi.
-    * B Grubu (Deney): Önerilen Hibrit Aramalı, Yeniden Sıralamalı ve Çift Doğrulamalı Döngüsel Agentic RAG Mimarisi.
+
+* **Bağımsız Değişken (Mimari Konfigürasyonları - 5 Düzeyli):**
+  * $M_0$ (Naive RAG): Tekil Vektör Arama (BGE-M3) + Doğrusal LLM Üretimi.
+  * $M_1$ (Hibrit Arama): BGE-M3 + BM25 + RRF Füzyonu.
+  * $M_2$ (Hibrit + Reranking): $M_1$ + BGE-Reranker-v2-m3 Cross-Encoder.
+  * $M_3$ (Döngüsel Arama - CRAG): $M_2$ + Niyet Ayrıştırma + Belge Analiz Ajanı Arama Döngüsü.
+  * $M_4$ (Tam Agentic RAG): $M_3$ + Çift Katmanlı Öz-Doğrulama (Self-RAG Citation Validator).
 * **Bağımlı Değişkenler:**
-  1. *Bağlam Uygunluğu (Context Relevance - 0-1):* Çekilen doküman parçalarının sorguyla örtüşme oranı.
-  2. *Kaynak Sadakati / Doğruluk (Faithfulness - 0-1):* Üretilen yanıtın yalnızca getirilen mevzuat metnine dayanma oranı (Halüsinasyonun tersi).
-  3. *Yanıt Uygunluğu (Answer Relevance - 0-1):* Üretilen yanıtın kullanıcının asıl sorusunu eksiksiz cevaplama derecesi.
-  4. *Madde Düzeyinde Atıf Doğruluğu (%):* Yanıtta verilen mevzuat/yönetmelik madde ve fıkra numaralarının doğruluğu.
-  5. *Uçtan Uca Yanıt Süresi (Latency - Saniye):* Sorgunun girilmesinden nihai doğrulanmış cevabın üretilmesine kadar geçen süre.
+  1. *Recall@5 (0-1):* Doğru mevzuat maddesinin ilk 5 sonuçta bulunma oranı.
+  2. *MRR (Mean Reciprocal Rank - 0-1):* Doğru kanıt maddesinin ilk sıralarda gelme başarısı.
+  3. *Faithfulness / Kaynak Sadakati (0-1):* Üretilen yanıtın yalnızca kaynak bağlama dayanma derecesi (RAGAS).
+  4. *Answer Relevance / Yanıt Uygunluğu (0-1):* Yanıtın kullanıcı sorusunu eksiksiz yanıtlama oranı (RAGAS).
+  5. *Desteklenmeyen İddia Oranı (%):* Yanıtta geçen ancak kaynakta bulunmayan fıkra/iddia oranı ($1 - \text{Faithfulness}$).
+  6. *Uzman Atıf ve Hukuki Bütünlük Skoru (1-5 Likert):* Çift-körleme uzman paneli puanı.
+  7. *Uçtan Uca Yanıt Süresi (Latency - Saniye):* Sorgudan doğrulanmış yanıta kadar geçen süre.
 
-### 2.3. İstatistiksel Yöntemler ve Değerlendirme Protokolü
-Sistemin başarısını ölçmek amacıyla YÖK mevzuatı, öğrenci işleri yönergeleri, Erasmus süreçleri ve akademik takvim verilerini kapsayan; uzmanlarca (akademik personel ve idari birim çalışanları) etiketlenmiş **100 adet çok adımlı ve çelişkili senaryo içeren "Altın Standart" (Ground Truth) test veri seti** oluşturulacaktır.
-* **Metriklerin Ölçümü:** Endüstri standardı olan **RAGAS (Automated Evaluation of Retrieval Augmented Generation; Es vd., 2023)** değerlendirme çatısı kullanılacaktır.
-* **Normallik Testi:** Kontrol ve deney gruplarından elde edilen metrik puanlarının normal dağılıma uygunluğu **Shapiro-Wilk Testi** ile incelenecektir.
-* **Hipotez Testi:** Verilerin normal dağılım göstermemesi durumunda bağımlı iki grubun karşılaştırılması için parametrik olmayan **Wilcoxon İşaretli Sıralar Testi (Wilcoxon Signed-Rank Test)**; normal dağılım sağlanması halinde ise **Eşleştirilmiş Örneklem t-Testi (Paired Samples t-test)** uygulanacaktır.
-* **Anlamlılık Düzeyi:** Tüm istatistiksel çıkarsamalarda istatistiksel anlamlılık eşiği **$p < 0.05$** olarak kabul edilecek; mimari farkın büyüklüğü **Cohen's d** veya **r etki büyüklüğü (effect size)** katsayısı ile raporlanacaktır.
+---
 
-### 2.4. Ön Çalışma ve Fizibilite (Kavram Kanıtlama - PoC)
-Araştırma önerisinin teknik uygulanabilirliğini teyit etmek amacıyla proje ekibi tarafından kapsamlı bir ön çalışma ve kavram kanıtlama (Proof of Concept - PoC) prototipi geliştirilmiştir:
-* Yalova Üniversitesi Öğrenci İşleri Mevzuatı, Erasmus Yönergeleri ve 2024-2025 Akademik Takvimi web kazıma (BeautifulSoup) ve OCR destekli PDF ayrıştırma (PyMuPDF, Tesseract) yöntemleriyle taranmıştır.
-* Mevzuat metinleri regex tabanlı madde-fıkra semantik bölücüsü ile parçalanarak 340 adet yapısal blok üretilmiş; metadata şemasına göre etiketlenmiştir.
-* Çok dilli gömme modeli (BGE-M3) ve BM25 ile hibrit indeksleme gerçekleştirilmiş; LangGraph tabanlı durum çizgesiyle niyet, arama, yanıt ve doğrulama ajanları koşturulmuştur.
-* Lokal açık kaynaklı büyük dil modeli (Llama-3.1 8B) ile yerel GPU üzerinde ilk denemeler tamamlanmış, çok adımlı bir sorguda (örn. *"Erasmus'a gidersem intibak derslerimin harç ve kayıt yenileme takvimi nasıl işler?"*) geleneksel RAG alakasız paragraflar getirirken, ajan tabanlı döngünün doğru iki ayrı yönetmelik maddesini birleştirerek sıfır halüsinasyonla yanıt oluşturduğu doğrulanmıştır.
+### 2.3. Doğrulama ve Etiketleme Protokolü: Altın Standart (Ground Truth) Test Veri Seti
 
-### 2.5. Yöntemin Çalışma Takvimi (İş Paketleri) ile İlişkisi
-Belirtilen bilimsel yöntem adımları 6 aylık proje takvimine şu şekilde entegre edilmiştir:
-* **İP-1 (1. Ay - Veri Toplama, OCR ve Hiyerarşik Ön İşleme):** YÖK ve üniversite mevzuat havuzunun kazınması, taranmış PDF'lerin OCR'dan geçirilmesi ve mevzuat şemasına göre semantik parçalama algoritmalarının kodlanması.
-* **İP-2 (2. Ay - Hibrit İndeksleme ve Vektör Veritabanı Mimarisi):** BGE-M3 yoğun vektörleri ile BM25 seyrek indeksinin oluşturulması, RRF füzyon katmanı ve Cross-Encoder yeniden sıralama pipeline'ının kurulması.
-* **İP-3 (3.-4. Aylar - Çok Ajanlı İş Akışı ve Geri Besleme Döngüleri):** LangGraph üzerinde Niyet Ayrıştırma, Düzeltici Arama (CRAG) ve Öz-Doğrulama (Self-RAG) ajan durum makinelerinin kodlanması ve halüsinasyon kontrol döngüsünün test edilmesi.
-* **İP-4 (5. Ay - Kullanıcı Arayüzü ve Entegrasyon):** Üniversite personeli ve öğrencilerin kolay erişimi için etkileşimli web arayüzünün (Streamlit/FastAPI) ve taşınabilir Docker konteynerizasyon yapısının tamamlanması.
-* **İP-5 (6. Ay - Deneysel Değerlendirme, İstatistiksel Doğrulama ve Raporlama):** 100 soruluk altın test setinin RAGAS ile koşulması, Naive RAG vs. Agentic RAG Wilcoxon analizlerinin yapılması ve TÜBİTAK sonuç raporunun hazırlanması.
+Araştırmanın deneysel geçerliliğini sağlamak amacıyla Yalova Üniversitesi idari mevzuatından derlenen **100 soruluk özgün bir Altın Standart test veri seti** inşa edilecektir:
+* **Taksonomi:** 
+  * *Tek Adımlı Sorular (Single-hop, n=50):* Tek bir yönetmelik maddesiyle doğrudan yanıtlanabilen olgusal sorular (Örn: "Mazeret sınavı başvuru süresi kaç gündür?").
+  * *Çok Adımlı Sorular (Multi-hop, n=50):* Birden fazla birimin mevzuatını ve akademik takvimini birleşik sentezlemeyi gerektiren çapraz sorular (Örn: "Erasmus programına güz döneminde katılan bir öğrencinin ders intibak işlemleri harç ödeme ve ders kayıt haftasıyla nasıl ilişkilendirilir?").
+* **Etiketleme Şeması:** Her test kaydı; `Soru Metni`, `İlgili Birim/Yönetmelik Adı`, `Doğrudan Dayanak Madde ve Fıkra Numaraları`, `Yürürlük Tarihi/Sürüm No` ve `Uzmanlarca Yazılmış İdeal Altın Yanıt` alanlarını içerecektir.
+* **Uzman Doğrulama Protokolü:** Sorular ve altın yanıtlar, Yalova Üniversitesi Öğrenci İşleri Daire Başkanlığı ve Dış İlişkiler Koordinatörlüğü'nden **2 bağımsız idari uzman** tarafından incelenecektir. Uzmanlar arasındaki uyuşma düzeyi **Fleiss' / Cohen's Kappa ($\kappa$)** katsayısı ile hesaplanacak; yalnızca $\kappa \ge 0.80$ (yüksek uzlaşma) sağlanan sorular nihai test setine kabul edilecektir.
 
-### Yöntem Kaynakçası
+---
+
+### 2.4. Kapsamlı Ablasyon Deney Tasarımı (Ablation Study)
+
+Önerilen mimarideki her bir bileşenin getirdiği bağımsız katkıyı ayrıştırmak amacıyla 5 aşamalı artımlı ablasyon deneyi yürütülecektir:
+
+$$\begin{array}{|l|c|c|c|c|c|}
+\hline
+\textbf{Bileşenler} & \textbf{M0 (Naive)} & \textbf{M1 (Hibrit)} & \textbf{M2 (Rerank)} & \textbf{M3 (CRAG)} & \textbf{M4 (Agentic)} \\
+\hline
+\text{Yoğun Vektör (BGE-M3)} & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+\text{Seyrek Anahtar Kelime (BM25)} & - & \checkmark & \checkmark & \checkmark & \checkmark \\
+\text{RRF Sıralama Birleştirmesi} & - & \checkmark & \checkmark & \checkmark & \checkmark \\
+\text{Cross-Encoder (BGE-Reranker)} & - & - & \checkmark & \checkmark & \checkmark \\
+\text{Niyet Ayrıştırma ve CRAG Döngüsü} & - & - & - & \checkmark & \checkmark \\
+\text{Öz-Doğrulayıcı Ajan (Self-RAG)} & - & - & - & - & \checkmark \\
+\hline
+\end{array}$$
+
+Her bir model ($M_0$ - $M_4$), aynı 100 altın soru üzerinde ayrı ayrı koşturulacak; bilgi getirme (Retrieval) metrikleri $M_0 \rightarrow M_1 \rightarrow M_2$ geçişlerinde; üretim kalitesi ve sadakat (Generation/Faithfulness) metrikleri ise $M_2 \rightarrow M_3 \rightarrow M_4$ geçişlerinde ölçülerek mimari bileşenlerin net etkisi izole edilecektir.
+
+---
+
+### 2.5. Değerlendirme Protokolü: RAGAS ve Çift-Körleme Uzman Değerlendirmesi
+
+1. **Otomatik Metrikler (RAGAS Çatısı):** Endüstri standardı olan RAGAS (Es vd., 2023) ile *Context Recall*, *Context Precision*, *Faithfulness (Sadakat)* ve *Answer Relevance* puanları hesaplanacaktır.
+2. **İnsan / Uzman Değerlendirmesi (Human Evaluation):** Otomatik metriklerin mevzuat inceliklerini tek başına kanıtlayamayacağı göz önünde bulundurularak; 100 soru arasından tabakalı örneklemeyle seçilen 40 soruya ait model yanıtları, hangi modelden çıktığı gizlenerek (**çift-körleme / double-blind**) 2 bağımsız mevzuat uzmanına sunulacaktır. Uzmanlar 5'li Likert ölçeğinde şu kriterleri puanlayacaktır:
+   * *Kriter A (Madde ve Fıkra Atıf Doğruluğu - 1-5):* Atıf yapılan kanun/yönetmelik maddesi doğru mu?
+   * *Kriter B (Yürürlük ve Sürüm Uygunluğu - 1-5):* Bilgi güncel mevzuata mı dayanıyor, mülga madde içeriyor mu?
+   * *Kriter C (Hukuki/İdari Bütünlük - 1-5):* Yanıt yanıltıcı bir hüküm veya hak kaybı riski barındırıyor mu?  
+   Puanlayıcılar arası güvenilirlik **Cohen's Kappa ($\kappa$)** ve **Krippendorff's Alpha ($\alpha$)** ile raporlanacaktır.
+3. **Kullanıcı Kabul Testi (SUS):** Sistemin nihai prototipi, 15 idari personel ve 35 öğrenciye test ettirilerek 10 soruluk standart **Sistem Kullanılabilirlik Ölçeği (System Usability Scale - SUS)** anketi uygulanacak ve kullanılabilirlik skoru raporlanacaktır.
+
+---
+
+### 2.6. İstatistiksel Analiz Yöntemleri
+* **Eşleştirilmiş Tasarım:** Aynı 100 soru her beş modelde de koşturulacağından veriler bağımlı (eşleştirilmiş) örneklem niteliğindedir.
+* **Normallik Analizi:** Her bir model ve metriğe ait fark serilerinin normal dağılıma uygunluğu **Shapiro-Wilk Testi** ile incelenecektir.
+* **Hipotez Testi:** Verilerin normal dağılmaması durumunda modeller arasındaki ikili karşılaştırmalar parametrik olmayan **Wilcoxon İşaretli Sıralar Testi (Wilcoxon Signed-Rank Test)** ile gerçekleştirilecektir. Beşli ablasyon karşılaştırmalarında Tip I hata oranını kontrol altında tutmak amacıyla $p$ değerlerine **Bonferroni Düzeltmesi** uygulanacaktır ($\alpha_{\text{düzeltilmiş}} = \frac{0.05}{k}$).
+* **Etki Büyüklüğü (Effect Size):** Anlamlı bulunan farkların büyüklüğü Rank-Biserial Korelasyon ($r = \frac{Z}{\sqrt{N}}$) ve Eşleştirilmiş Cohen's $d$ katsayılarıyla raporlanacaktır.
+
+---
+
+### 2.7. Ön Çalışma ve Fizibilite (Kavram Kanıtlama - PoC Bulguları)
+Proje ekibi tarafından Yalova Üniversitesi Erasmus yönergeleri ve 2024-2025 akademik takvimi üzerinde geliştirilen çalışan bir PoC prototipi ile ön fizibilite gerçekleştirilmiştir:
+* Toplanan resmi belgeler regex tabanlı madde bölücüsü ile 340 yapısal parçaya ayrılmış ve metadata şeması doğrulanmıştır.
+* Hazırlanan 20 adet pilot soru üzerinde yapılan ön deneylerde; Naive RAG modelinin Recall@5 getirme skoru **%60.0** seviyesinde kalırken; BGE-M3 + BM25 hibrit aramasının Reranker ile desteklendiği modelde bu oran **%80.0**'e yükselmiştir (yaklaşık %33 göreli artış).
+* Ajan döngüsü ve atıf denetiminin devreye alınmasıyla çok adımlı sorgularda (Erasmus + harç takvimi) kaynaksız iddia üretiminin engellendiği ve yanıtların doğrudan mevzuat maddelerine bağlandığı ampirik olarak gözlemlenmiştir.
+
+---
+
+### 2.8. Veri Güncelliği, Sürüm Takibi ve Yürürlük Kontrolü
+Üniversite mevzuatının dinamik yapısı gereği sistemde şu sürüm yönetim mekanizması uygulanacaktır:
+* Korpus, Yalova Üniversitesi Senatosu tarafından onaylanmış en güncel (2024-2025 ve 2025-2026 akademik yılı) yürürlükteki metinlerle sınırlandırılmıştır.
+* Her mevzuat maddesi veritabanına işlenirken `yururluk_tarihi`, `son_degisiklik_tarihi`, `senato_karar_sayisi` ve `mulga_durumu` (aktif/mülga) metadata alanlarıyla etiketlenmektedir.
+* Yürürlükten kaldırılan (mülga) veya bir sonraki dönem yürürlüğe girecek olan maddeler hibrit arama öncesinde filtrelenmekte; böylece eski mevzuat hükümlerinin kullanıcıya güncel kural gibi sunulması mimari düzeyde engellenmektedir.
+
+---
+
+### 2.9. Yöntemin Çalışma Takvimi (İş Paketleri) ile İlişkisi
+* **İP-1 (1. Ay):** Mevzuat taranması, OCR katmanı, sürüm/yürürlük etiketlemesi ve deterministik regex ayrıştırma.
+* **İP-2 (2. Ay):** BGE-M3 ve BM25 hibrit indeksleme, RRF füzyonu ve Cross-Encoder yeniden sıralama pipeline'ı.
+* **İP-3 (3. ve 4. Aylar):** LangGraph durum çizgesi, Niyet Ajanı, döngüsel CRAG mekanizması ve Self-RAG atıf doğrulayıcısının kodlanması.
+* **İP-4 (4. Ay sonu - 5. Ay):** Streamlit/FastAPI arayüzü, çok turlu hafıza ve platformdan bağımsız Docker konteynerizasyonu.
+* **İP-5 (5. ve 6. Aylar - 2 Ay Ayrılmıştır):** 100 soruluk altın test setinin uzmanlarca doğrulanması ($\kappa \ge 0.80$), 5 aşamalı ablasyon deneyleri (M0-M4), çift-körleme uzman paneli, RAGAS ölçümleri, Wilcoxon analizleri ve 50 kullanıcılı SUS testi.
+
+---
+
+### BİRLEŞTİRİLMİŞ AKADEMİK KAYNAKÇA
+
 * Asai, A., Sewon, M., et al. (2023). Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection. *arXiv preprint arXiv:2310.11511*.
+* Brooke, J. (1996). SUS: A 'quick and dirty' usability scale. *Usability evaluation in industry*, 189(194), 4-7.
 * Chen, J., Xiao, S., et al. (2024). BGE M3-Embedding: Multi-Lingual, Multi-Functionality, Multi-Granularity Text Embeddings Through Versatile Pre-Training. *arXiv preprint arXiv:2402.03216*.
 * Cormack, G. V., Clarke, C. L., & Buettcher, S. (2009). Reciprocal rank fusion outperforms condorcet and individual machine learning methods. *ACM SIGIR*, 758-759.
 * Es, S., James, J., et al. (2023). RAGAS: Automated Evaluation of Retrieval Augmented Generation. *arXiv preprint arXiv:2309.15217*.
 * Gao, Y., Xiong, Y., et al. (2023). Retrieval-Augmented Generation for Large Language Models: A Survey. *arXiv preprint arXiv:2312.10997*.
-* Lewis, P., Perez, E., et al. (2020). Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks. *NeurIPS*, 33, 9459-9474.
+* Lewis, P., Perez, E., et al. (2020). Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks. *Advances in Neural Information Processing Systems (NeurIPS)*, 33, 9459-9474.
 * Yan, S. Q., Gu, J. C., et al. (2024). Corrective Retrieval Augmented Generation. *arXiv preprint arXiv:2401.15884*.
 
 ---
@@ -175,65 +248,65 @@ Belirtilen bilimsel yöntem adımları 6 aylık proje takvimine şu şekilde ent
 
 #### Faaliyetler (İş Paketleri)
 ```text
-İP-1: Yükseköğretim Mevzuat Havuzunun Taranması, OCR ve Hiyerarşik Ön İşleme (1. Ay)
-YÖK kurumları ve Yalova Üniversitesi bünyesindeki lisans ve lisansüstü yönetmelikleri, senato kararları, Erasmus yönergeleri ve akademik takvim dokümanları taranarak toplanacaktır. Taranmış (vektörel olmayan) PDF belgeleri Tesseract OCR motoru ile sayısallaştırılacaktır. Elde edilen metinler, bağlam bütünlüğünü korumak amacıyla mevzuat madde ve fıkra hiyerarşisini tanıyan kural tabanlı semantik ayrıştırıcılarla parçalara (chunk) bölünecek ve yapılandırılmış JSON formatında metadata etiketleriyle (yönetmelik adı, madde no, tarih) zenginleştirilecektir.
-- Başarı Ölçütü: Mevzuat dokümanlarının %100 taranması, yapısal ayrıştırmanın tamamlanması ve ön işleme hattının doğrulanması (%20).
+İP-1: Mevzuat Havuzunun Taranması, OCR, Sürüm/Yürürlük Kontrolü ve Hiyerarşik Ön İşleme (1. Ay)
+Yalova Üniversitesi bünyesindeki güncel lisans/önlisans yönetmelikleri, senato esasları, intibak yönergeleri, Erasmus kılavuzları ve akademik takvim dokümanları taranacaktır. Taranmış PDF belgeleri Tesseract OCR motoru ile sayısallaştırılacaktır. Metinler, kural tabanlı semantik regex ayrıştırıcılarıyla doğrudan madde/fıkra sınırlarından parçalara ayrılacak; her parçaya yürürlük tarihi, senato karar sayısı ve mülga durumu üstverileri işlenerek yapılandırılmış JSON formatında korpus oluşturulacaktır.
+- Başarı Ölçütü: Mevzuat dokümanlarının %100 taranması, mülga maddelerin filtrelenmesi, en az 300 doğrulanmış mevzuat bloğunun üretilmesi (%15).
 
-İP-2: Yoğun ve Seyrek Hibrit İndeksleme ile Vektör Veritabanı Mimarisi (2. Ay)
-Ayrıştırılan mevzuat blokları, BGE-M3 çok dilli gömme modeliyle yoğun vektörlere dönüştürülerek ChromaDB vektör veritabanına indekslenecektir. Eşzamanlı olarak, mevzuattaki kesin kanun/yönetmelik madde numaralarının ıskalanmaması için BM25 seyrek anahtar kelime indeksi inşa edilecektir. Semantik ve terimsel aramayı birleştiren RRF (Reciprocal Rank Fusion) füzyon algoritması ve aday bağlamları çapraz puanlayan Cross-Encoder (BGE-Reranker) mimarisi kurularak geri getirme performansı optimize edilecektir.
-- Başarı Ölçütü: Hibrit arama ve yeniden sıralama hattının test sorgularında ilk k bağlamı doğrulukla getirmesi (%20).
+İP-2: Yoğun ve Seyrek Hibrit İndeksleme ile Cross-Encoder Yeniden Sıralama Mimarisi (2. Ay)
+Ayrıştırılan mevzuat blokları çok dilli BGE-M3 gömme modeliyle yoğun vektörlere dönüştürülerek ChromaDB veritabanına indekslenecektir. Eşzamanlı olarak kesin mevzuat madde ve terim eşleşmeleri için BM25 seyrek indeksi inşa edilecektir. İki getirme kanalını birleştiren RRF (Reciprocal Rank Fusion) füzyonu ve aday bağlamları çapraz dikkatle puanlayan BGE-Reranker-v2-m3 Cross-Encoder katmanı kurulacaktır.
+- Başarı Ölçütü: Hibrit arama ve yeniden sıralama hattının test sorgularında ilk k bağlamı doğrulukla getirmesi ve indeksleme hattının tamamlanması (%15).
 
-İP-3: Çok Ajanlı İş Akışı, Düzeltici RAG (CRAG) ve Öz-Doğrulama Tasarımı (3. ve 4. Aylar)
-LangGraph üzerinde durum çizgesi (StateGraph) kurgulanacaktır. Kullanıcı sorgusunu alt niyetlere bölen Niyet Analiz Ajanı, getirilen bağlamın yeterliliğini değerlendirip gerekirse aramayı döngüsel tekrarlayan Çözümleyici Ajan (CRAG) ve yanıtı mevzuat maddesi düzeyinde kaynak göstererek üreten Yanıt Ajanı kodlanacaktır. Üretilen yanıtı kaynak metinle satır satır denetleyen bağımsız Doğrulayıcı Ajan (Self-RAG) entegre edilerek halüsinasyonlar filtrelenecektir.
-- Başarı Ölçütü: Çok adımlı sorgularda ajanlar arası durum geçişlerinin hatasız çalışması ve doğrulama mekanizmasının halüsinasyonları engellemesi (%30).
+İP-3: Çok Ajanlı Durum Çizgesi (LangGraph), Düzeltici RAG (CRAG) ve Öz-Doğrulama Tasarımı (3. ve 4. Aylar)
+LangGraph üzerinde durum çizgesi (StateGraph) kurgulanacaktır. Kullanıcı sorgusunu alt niyetlere bölen Niyet Analiz Ajanı, getirilen bağlamın yeterliliğini denetleyip gerekirse azami 2 tura kadar aramayı döngüsel tekrarlayan Belge Analiz Ajanı (CRAG) ve yanıtı mevzuat maddesi düzeyinde kaynak göstererek üreten Yanıt Ajanı kodlanacaktır. Üretilen yanıtı kaynak fıkra ile NLI mantığıyla satır satır denetleyen bağımsız Doğrulayıcı Ajan (Self-RAG) entegre edilecektir.
+- Başarı Ölçütü: Çok adımlı sorgularda ajanlar arası durum geçişlerinin hatasız çalışması, döngüsel aramanın 2 turla sınırlandırılması ve atıf doğrulayıcının çalışması (%25).
 
-İP-4: Kullanıcı Arayüzü, API Katmanı ve Konteynerizasyon (5. Ay)
-Öğrenci ve idari personelin sisteme kolayca erişebilmesi için çok turlu konuşma geçmişini (hafıza) destekleyen Streamlit ve FastAPI tabanlı kullanıcı arayüzü geliştirilecektir. Sistemin farklı üniversitelerde ek bir kuruluma ihtiyaç duymadan çalıştırılabilmesi için uçtan uca Docker konteynerizasyon paketi hazırlanacaktır.
+İP-4: Kullanıcı Arayüzü, API Katmanı ve Konteynerizasyon (4. Ay Sonu ve 5. Ay)
+Öğrenci ve idari personelin sisteme kolayca erişebilmesi için çok turlu konuşma geçmişini (hafıza) destekleyen Streamlit ve FastAPI tabanlı kullanıcı arayüzü geliştirilecektir. Sistemin farklı sunucu ortamlarında ek bir kütüphane çakışması olmadan çalıştırılabilmesi için uçtan uca Docker konteynerizasyon paketi hazırlanacaktır.
 - Başarı Ölçütü: Web arayüzünün ve Docker ortamının hatasız ve kararlı şekilde ayağa kalkması (%15).
 
-İP-5: Altın Test Seti ile Deneysel Değerlendirme ve İstatistiksel Doğrulama (6. Ay)
-Akademik ve idari birim rehberliğinde oluşturulan 100 adet çok adımlı ve çelişkili senaryo içeren Altın Standart (Ground Truth) test veri seti üzerinde Klasik Naive RAG ile önerilen Agentic RAG modeli karşılaştırılacaktır. RAGAS değerlendirme çerçevesiyle Bağlam Uygunluğu, Sadakat ve Yanıt Uygunluğu metrikleri ölçülecek; Shapiro-Wilk normallik ve Wilcoxon İşaretli Sıralar Testi uygulanarak mimarinin başarısı istatistiksel olarak kanıtlanacaktır.
-- Başarı Ölçütü: Agentic RAG mimarisinin Sadakat ve Madde Doğruluğu metriklerinde Naive RAG'e kıyasla p < 0.05 düzeyinde istatistiksel üstünlük sağlaması (%15).
+İP-5: Altın Test Setinin Uzmanlarca Doğrulanması, Kapsamlı Ablasyon Deneyleri, Körleme Uzman Değerlendirmesi ve İstatistiksel Analiz (5. ve 6. Aylar - 2 Ay)
+Öğrenci İşleri ve Dış İlişkiler uzmanları rehberliğinde 50 tek adımlı, 50 çok adımlı sorudan oluşan 100 soruluk Altın Standart test veri seti oluşturulacak ve uzmanlar arası uyum (Fleiss' Kappa >= 0.80) doğrulanacaktır. 5 farklı ablasyon modeli (M0-M4) aynı test setinde koşturulacaktır. RAGAS otomatik metrikleri hesaplanacak; 40 soru üzerinde çift-körleme uzman paneli ile madde ve hukuki bütünlük puanlaması yapılacaktır. Shapiro-Wilk normallik testi sonrasında Wilcoxon İşaretli Sıralar Testi ve Rank-Biserial etki büyüklüğü hesaplanacaktır. 50 kullanıcı ile SUS anketi yürütülecek ve TÜBİTAK sonuç raporu hazırlanacaktır.
+- Başarı Ölçütü: Agentic RAG mimarisinin Recall@5 ve Sadakat metriklerinde Naive RAG'e kıyasla p < 0.05 düzeyinde istatistiksel üstünlük sağlaması, ablasyon raporunun tamamlanması ve SUS skorunun 75 üzerinde gerçekleşmesi (%30).
 ```
 
 #### Kim(ler) Tarafından Gerçekleştirileceği
 ```text
 Proje Yürütücüsü (Dursun Burak Yüz):
-Proje kapsamında yer alan tüm teknik aşamaların fiilen yürütülmesinden sorumludur. Web kazıma, OCR ve mevzuat ön işleme boru hattının kurulması (İP-1); BGE-M3 ve BM25 hibrit indeksleme ve vektör veritabanı mimarisinin inşa edilmesi (İP-2); LangGraph tabanlı çok ajanlı durum makinelerinin (Niyet, CRAG, Yanıt ve Self-RAG Doğrulayıcı ajanlar) kodlanması (İP-3); kullanıcı web arayüzünün ve Docker konteyner altyapısının geliştirilmesi (İP-4); test senaryolarının RAGAS çatısı üzerinden koşturulması ve Wilcoxon istatistiksel analizlerinin gerçekleştirilmesinde (İP-5) birincil derecede görev alacaktır.
+Proje kapsamındaki tüm teknik geliştirme ve deneysel uygulama adımlarından doğrudan sorumludur. Web kazıma, OCR ve hiyerarşik mevzuat ön işleme boru hattının kurulması (İP-1); BGE-M3 ve BM25 hibrit indeksleme ile Cross-Encoder yeniden sıralama katmanının kodlanması (İP-2); LangGraph tabanlı durum makinelerinin (Niyet, CRAG, Yanıt ve Self-RAG Doğrulayıcı ajanlar) geliştirilmesi (İP-3); kullanıcı web arayüzünün ve Docker konteynerizasyon yapısının tamamlanması (İP-4); 5 aşamalı ablasyon deneylerinin yürütülmesi, RAGAS ve Wilcoxon istatistiksel analizlerinin gerçekleştirilmesi ile SUS anketlerinin uygulanmasında (İP-5) birincil derecede görev alacaktır.
 
 Proje Danışmanı:
-Araştırma tasarımının ve yönteminin bilimsel standartlara uygunluğunun denetlenmesi, mevzuat alanındaki test senaryolarının doğrulanması, istatistiksel hipotez testlerinin akademik geçerliliğinin kontrol edilmesi ve 6 aylık çalışma takviminin periyodik akademik takibi ve rehberliğinden sorumludur.
+Araştırma tasarımının ve ablasyon metodolojisinin bilimsel standartlara uygunluğunun denetlenmesi, idari birimlerle koordinasyon kurularak 100 soruluk test setinin uzman doğrulama protokolünün yönetilmesi, istatistiksel hipotez testlerinin ve uzman değerlendirme sonuçlarının akademik geçerliliğinin kontrol edilmesi ve 6 aylık çalışma takviminin periyodik akademik takibinden sorumludur.
 ```
 
 ---
 
-### 3.2. Risk Yönetimi (Riskler ve B Planları)
+### 3.2. Risk Yönetimi (Riskler ve Somut B Planları)
 
 ```text
 Risk 1: Taranmış Eski Mevzuat Dokümanlarında Düşük OCR Kalitesi ve Metin Kaybı
-- İlgili İş Paketi: İP-1 (Yükseköğretim Mevzuat Havuzunun Taranması, OCR ve Hiyerarşik Ön İşleme)
+- İlgili İş Paketi: İP-1 (Mevzuat Taranması, OCR ve Hiyerarşik Ön İşleme)
 - Risk Düzeyi: Orta
-- B Planı: Taranmış ve düşük çözünürlüklü PDF dokümanlarında Tesseract OCR motorunun yetersiz kalması durumunda, görüntü ön işleme aşamasına OpenCV tabanlı morfolojik filtreleme, gri tonlama ve adaptif eşikleme (binarization) adımları eklenecektir. Karakter tanıma başarısı artmazsa, alternatif açık kaynaklı derin öğrenme tabanlı OCR motorlarına (PaddleOCR) geçilecek; taranmış belgelere paralel olarak üniversite ve YÖK resmi portallarındaki güncel HTML/dijital metin tabanlı kaynaklar önceliklendirilerek veri kaybı engellenecektir.
+- B Planı: Taranmış PDF dokümanlarında Tesseract OCR motorunun düşük karakter doğruluğu vermesi durumunda; görüntü ön işleme aşamasına OpenCV ile gri tonlama, gürültü giderme ve adaptif eşikleme (binarization) filtreleri eklenecektir. Karakter tanıma başarısı artmazsa alternatif açık kaynaklı derin öğrenme tabanlı OCR motorlarına (PaddleOCR) geçilecek; taranmış belgelere paralel olarak üniversite resmi web portalındaki dijital HTML metinler önceliklendirilecektir.
 
-Risk 2: Çok Ajanlı Düzeltici RAG (CRAG) Döngüsünde Sonsuz Arama ve Yanıt Gecikmesi (Latency)
-- İlgili İş Paketi: İP-3 (Çok Ajanlı İş Akışı, Düzeltici RAG ve Öz-Doğrulama Tasarımı)
+Risk 2: Düzeltici RAG (CRAG) Döngüsünde Sonsuz Arama ve Yanıt Gecikmesi (Latency)
+- İlgili İş Paketi: İP-3 (Çok Ajanlı İş Akışı ve CRAG Tasarımı)
 - Risk Düzeyi: Yüksek
-- B Planı: Çözümleyici ajanın getirilen bağlamı yetersiz bulup sürekli yeni sorgular türeterek arama döngüsüne girmesi riskine karşı, LangGraph durum çizgesi (StateGraph) üzerinde katı bir iterasyon sınırı (maksimum 2 döngü) tanımlanmıştır. İkinci denemede de mevzuat maddesi düzeyinde tam eşleşme sağlanamazsa, sistem kullanıcıya mevzuat belirsizliğini ve ilgili birimin resmi web bağlantısını şeffaf biçimde sunarak "kontrollü güvenli çıkış" (graceful fallback) yapacak; böylece yanıt gecikmesi kullanıcı deneyimini bozmayacak bir eşikte (en fazla 6 saniye) sınırlandırılacaktır.
+- B Planı: Belge Analiz Ajanının getirilen bağlamı yetersiz bulup sürekli yeni sorgular türeterek arama döngüsüne girmesi riskine karşı; LangGraph durum çizgesi üzerinde katı bir sınır (azami 2 döngü) tanımlanmıştır. İkinci döngüde de eşik sağlanamazsa, sistem kullanıcıya mevzuat maddesindeki belirsizliği ve ilgili idari birimin doğrudan iletişim/web bağlantısını sunarak "güvenli çıkış" (graceful fallback) yapacak; böylece yanıt gecikmesi 6 saniye altında sınırlandırılacaktır.
 
-Risk 3: Mevzuat Çelişkilerinde Yanıt Ajanının Halüsinasyon Üretmesi ve Doğrulama Hataları
-- İlgili İş Paketi: İP-3 ve İP-5 (Öz-Doğrulama Tasarımı ve Deneysel Değerlendirme)
+Risk 3: Mevzuat Çelişkilerinde Desteklenmeyen İddia Üretimi ve Atıf Doğrulama Hataları
+- İlgili İş Paketi: İP-3 ve İP-5 (Öz-Doğrulama ve Deneysel Değerlendirme)
 - Risk Düzeyi: Yüksek
-- B Planı: Farklı mevzuat belgeleri (örn. Lisans Yönetmeliği vs. Erasmus Yönergesi) arasındaki çelişkilerde dil modelinin varsayımsal bilgi uydurmasını engellemek için Çift Aşamalı Öz-Doğrulama (Self-RAG) mekanizması uygulanacaktır. Doğrulayıcı Ajanın yanıtta geçen her cümleyi doğrudan kaynak bağlamdaki madde/fıkra ile NLI (Doğal Dil Çıkarsaması) mantığıyla eşleştirmesi zorunlu kılınacaktır. Doğrulanamayan cümleler yanıttan otomatik ayıklanacak; şüphe durumunda yanıt üretimi durdurularak kullanıcıya yalnızca kesinleşmiş mevzuat hükümleri aktarılacaktır.
+- B Planı: Farklı yönergeler arasındaki olası çelişkilerde dil modelinin kaynak dışı hüküm uydurmasını engellemek için Çift Aşamalı Öz-Doğrulama (Self-RAG) mekanizması zorunlu kılınacaktır. Doğrulayıcı Ajan, yanıttaki her cümleyi kaynak bağlamdaki fıkra ile NLI (Doğal Dil Çıkarsaması) prensibiyle eşleştirecek; doğrulanmayan veya çelişen ifadeler yanıttan otomatik elenecektir.
 
 Risk 4: Yerel Donanım / GPU Kaynak Yetersizliği ve Bellek (VRAM) Kısıtları
 - İlgili İş Paketi: İP-2 ve İP-4 (Hibrit İndeksleme ve Konteynerizasyon)
 - Risk Düzeyi: Orta
-- B Planı: BGE-M3 gömme modeli, BGE-Reranker ve yerel LLM'in (Llama-3.1 8B) eşzamanlı çalıştırılması esnasında GPU belleğinin (VRAM) aşılması durumunda, modeller 4-bit/8-bit kuantizasyon (AWQ/GGUF/Ollama) formatlarına indirgenecektir. Gerekmesi halinde reranker aşamasında daha hafif mimariler (bge-reranker-base veya MiniLM) devreye sokulacak; hibrit arama için BM25 seyrek indeksleme CPU üzerinde asenkron çalışacak şekilde optimize edilecektir.
+- B Planı: BGE-M3 gömme modeli, BGE-Reranker ve yerel LLM'in eşzamanlı çalıştırılması sırasında yerel GPU VRAM'inin aşılması durumunda; modeller 4-bit/8-bit kuantizasyon formatlarına (GGUF/AWQ) indirgenecektir. Ayrıca proje bütçesinden ayrılan 5.000 TL'lik bulut GPU hesaplama hizmet alımı devreye sokularak ablasyon deneyleri bulut sunucu üzerinde kesintisiz tamamlanacaktır.
 
-Risk 5: Altın Standart Test Seti Doğrulamasında İdari Birim Geri Bildirim Gecikmesi
-- İlgili İş Paketi: İP-5 (Altın Test Seti ile Deneysel Değerlendirme ve İstatistiksel Doğrulama)
+Risk 5: Altın Test Setinin Uzmanlarca Doğrulanmasında Yaşanabilecek Gecikmeler
+- İlgili İş Paketi: İP-5 (Altın Test Seti, Uzman Doğrulaması ve İstatistiksel Analiz)
 - Risk Düzeyi: Düşük
-- B Planı: 100 soruluk test setinin mevzuat uzmanları tarafından onaylanmasının gecikmesi durumunda; proje danışmanının yönlendirmesiyle resmi Sıkça Sorulan Sorular (SSS) havuzları ve mevzuat metinlerinden yarı otomatik sentetik soru-cevap türetim algoritmaları çalıştırılacaktır. Oluşturulan taslak test seti danışman onayına sunulacak, süreç aksamadan RAGAS değerlendirme testlerine başlanacaktır.
+- B Planı: İdari birim uzmanlarının yoğunluğu nedeniyle test setinin doğrulanmasının gecikmesi riskine karşı; resmi SSS havuzlarından ve geçmiş senato kararlarından yarı otomatik sentetik soru-cevap çiftleri önceden hazırlanacaktır. Proje danışmanı liderliğinde taslak set üzerinden ön inceleme yapılacak; uzmanlara sadece nihai onay ve etiketleme adımı bırakılarak takvim aksaması önlenecektir.
 ```
 
 ---
@@ -242,12 +315,12 @@ Risk 5: Altın Standart Test Seti Doğrulamasında İdari Birim Geri Bildirim Ge
 
 #### Kuruluşta Bulunan Altyapı/Ekipman Türü - Modeli (Laboratuvar - Araç - Makine-Teçhizat vb.) *
 ```text
-Yalova Üniversitesi Bilgisayar Mühendisliği Bölümü Araştırma Laboratuvarı ve Yüksek Performanslı GPU Hesaplama İş İstasyonu (NVIDIA GeForce RTX 4060 8GB GPU, Yüksek Hızlı NVMe SSD Depolama, 16 GB RAM, ULAKBİM/Eduroam Ağ Altyapısı)
+Yalova Üniversitesi Mühendislik Fakültesi Bilgisayar Mühendisliği Bölümü Araştırma Laboratuvarı ve Yüksek Performanslı GPU Hesaplama İş İstasyonu (NVIDIA GeForce RTX 4060 8GB GPU, Yüksek Hızlı NVMe SSD Depolama, 16 GB Sistem Belleği, ULAKBİM ve Eduroam Akademik Geniş Bant Ağ Altyapısı)
 ```
 
 #### Projede Kullanım Amacı *
 ```text
-Açık kaynaklı Büyük Dil Modelinin (Llama-3.1 8B) yerel ortamda kuantize edilerek çalıştırılması (çıkarım/inference), BGE-M3 çok dilli yoğun gömme (embedding) vektörlerinin çıkarılması, Cross-Encoder (BGE-Reranker) ile aday mevzuat maddelerinin yeniden sıralanması, LangGraph çok ajanlı durum çizgesinin koşturulması, ChromaDB vektör veritabanının indekslenmesi, Streamlit/Docker tabanlı kullanıcı arayüzünün yerel testleri ve RAGAS doğrulama testlerinin yürütülmesi amacıyla kullanılacaktır.
+Açık kaynaklı temel dil modelinin (8B parametreli) yerel ortamda kuantize edilerek çıkarım (inference) yapması, BGE-M3 çok dilli yoğun gömme (embedding) vektörlerinin çıkarılması, Cross-Encoder (BGE-Reranker) ile aday mevzuat maddelerinin yeniden sıralanması, LangGraph çok ajanlı durum çizgesinin koşturulması, ChromaDB vektör veritabanının indekslenmesi, Streamlit/Docker tabanlı kullanıcı arayüzünün geliştirilmesi ve RAGAS doğrulama testlerinin yerel ön koşumları amacıyla kullanılacaktır.
 ```
 
 ---
@@ -256,22 +329,22 @@ Açık kaynaklı Büyük Dil Modelinin (Llama-3.1 8B) yerel ortamda kuantize edi
 
 ### 1. Bilimsel/Akademik Çıktılar
 ```text
-- Ulusal veya uluslararası indeksli saygın bir bilimsel konferansta (örneğin IEEE SİU - Sinyal İşleme ve İletişim Uygulamaları Kurultayı veya TAINN Yapay Zekâ Konferansı) en az 1 adet hakemli akademik bildirinin sunulması ve bildiriler kitabında yayımlanması hedeflenmektedir.
-- Proje kapsamında elde edilen deneysel bulguların (Klasik RAG vs. Agentic RAG karşılaştırmalı RAGAS metrik sonuçları), Türkçe Doğal Dil İşleme alanında açık erişimli bir dergi makalesine dönüştürülmesi için yayın hazırlığı tamamlanacaktır.
-- Lisans bitirme tezi kapsamında Türkçe idari mevzuatta çok ajanlı sistemlerin başarımını belgeleyen kapsamlı bir akademik araştırma raporu hazırlanacaktır.
+- Ulusal/Uluslararası Hakemli Bildiri: Araştırma kapsamında elde edilen deneysel bulgular ve 5 aşamalı ablasyon sonuçları (Naive RAG'den Agentic RAG'e Recall@5, MRR ve RAGAS metriklerindeki istatistiksel değişim), IEEE Sinyal İşleme ve İletişim Uygulamaları Kurultayı (SİU) veya TAINN Uluslararası Yapay Zekâ Konferansı gibi saygın bir bilimsel platformda hakem değerlendirmesinden geçirilerek en az 1 adet akademik bildiri olarak sunulacak ve bildiriler kitabında yayımlanacaktır.
+- Doğrulanmış Akademik Kıyaslama Veri Seti (Benchmark): Yükseköğretim idari mevzuatına dayalı, uzmanlarca doğrulanmış (Fleiss' Kappa >= 0.80), 50 tek adımlı ve 50 çok adımlı sorudan oluşan 100 soruluk Türkçe "Altın Standart (Ground Truth)" test veri seti açık bilim ilkeleri doğrultusunda literatüre kazandırılacaktır.
+- Lisans Bitirme Tezi: Yükseköğretim mevzuatında çok ajanlı sistemlerin başarımını, hata analizlerini ve ablasyon sonuçlarını belgeleyen kapsamlı bir bitirme tezi ve teknik araştırma raporu tamamlanacaktır.
 ```
 
 ### 2. Ekonomik/Ticari/Sosyal Çıktılar
 ```text
-- Çalışan Yazılım Prototipi: Üniversite web portallarına kolayca entegre olabilen, Docker ile paketlenmiş, Streamlit tabanlı, çok turlu hafızaya sahip ve mevzuat maddesi düzeyinde doğrulanmış yanıt üreten bir "Agentic RAG Bilgi Asistanı" prototipi elde edilecektir.
-- Sosyal ve Kurumsal İş Gücü Tasarrufu: Üniversite öğrencilerinin idari birimlere gitmeden mevzuat, ders intibak kuralları ve Erasmus başvuru şartlarına 7/24 resmi kaynak atıflarıyla erişmesi sağlanarak; Öğrenci İşleri ve Dış İlişkiler ofislerinin rutin telefon/e-posta danışma yükünün en az %40 oranında azaltılması ve kurumsal verimliliğin artırılması sağlanacaktır.
-- Açık Kaynak Katkısı: Geliştirilen mevzuat ayrıştırma algoritmaları ve LangGraph çok ajanlı iş akış şablonları GitHub üzerinden açık kaynak lisansıyla paylaşılarak diğer YÖK kurumları için sıfır maliyetli bir referans model oluşturulacaktır.
+- Çalışan Yazılım Prototipi: Üniversite web portallarına kolayca entegre olabilen, Docker konteyneri ile paketlenmiş, çok turlu konuşma geçmişini destekleyen ve mevzuat maddesi düzeyinde doğrulanmış yanıt üreten "Agentic RAG Bilgi Asistanı" çalışan yazılım prototipi elde edilecektir.
+- Ölçülebilir Kullanıcı Kabulü ve Kurumsal Verimlilik: Sistem Kullanılabilirlik Ölçeği (SUS) ile 15 idari personel ve 35 öğrenci üzerinde yürütülecek kullanıcı testlerinde en az 75/100 (iyi düzey) kullanılabilirlik skoru hedeflenmektedir. Öğrencilerin mevzuata 7/24 resmi madde atıflarıyla erişmesi sağlanarak bilgi eksikliğinden kaynaklanan hak kayıpları engellenecek ve idari birimlerin danışma süreçlerinde ölçülebilir bir zaman tasarrufu sağlanacaktır.
+- Açık Kaynak Altyapı Katkısı: Türk idari mevzuat diline özel geliştirilen kural tabanlı regex ayrıştırma algoritmaları ve LangGraph çoklu ajan akış şablonları GitHub üzerinden açık kaynak lisansıyla yayımlanarak diğer üniversiteler için referans bir Ar-Ge çatısı oluşturulacaktır.
 ```
 
 ### 3. Yeni Proje(ler) Oluşturmasına Yönelik Çıktılar
 *(Düşük Kişisel Efor / Hazır Altyapı ve Platform Odaklı Versiyon)*
 ```text
-- Hazır Altyapı ve Yaygınlaşma: Projede geliştirilen modüler ve Dockerize edilmiş mikroservis mimarisi; diğer devlet ve vakıf üniversitelerinin veya kamu kurumlarının kendi idari mevzuatlarını doğrudan yükleyerek kullanabilecekleri genişletilebilir hazır bir yazılım çatısı (framework) sağlayacaktır.
-- Gelecek Araştırmalara Zemin Oluşturma: Oluşturulan 100 soruluk mevzuat test seti ve hibrit arama mimarisi; üniversite bünyesinde yapılabilecek BAP (Bilimsel Araştırma Projeleri), TÜBİTAK 2209-B (Sanayi Odaklı) veya sonraki dönem lisansüstü tez çalışmaları için hazır bir deneysel başlangıç noktası teşkil edecektir.
-- Yarışma ve Girişimcilik Potansiyeli: Proje çıktısı, ek bir geliştirme yükü gerektirmeksizin mevcut haliyle TEKNOFEST Türkçe Doğal Dil İşleme Yarışması veya TÜBİTAK BİGG girişimcilik programı için doğrudan sunulabilir nitelikte bir teknolojik kavram kanıtlama (PoC) tabanı oluşturacaktır.
+- Kurumsal Genişletilebilirlik ve Hazır Altyapı: Projede geliştirilen modüler ve Dockerize edilmiş mikroservis mimarisi; diğer devlet ve vakıf üniversitelerinin veya kamu kurumlarının kendi mevzuat metinlerini yükleyerek doğrudan kullanabilecekleri genişletilebilir hazır bir yazılım çatısı (framework) sağlayacaktır.
+- Gelecek Araştırmalara Zemin Oluşturma: Oluşturulan 100 soruluk mevzuat test veri seti, hibrit arama mimarisi ve ablasyon sonuçları; ilgili bölümde yürütülebilecek sonraki lisansüstü tez çalışmaları veya TÜBİTAK 2209-B (Sanayi Odaklı) projeleri için hazır bir deneysel başlangıç noktası teşkil edecektir.
+- Yarışma ve Girişimcilik Potansiyeli: Proje çıktısı, ek bir geliştirme yükü gerektirmeksizin mevcut haliyle TEKNOFEST Türkçe Doğal Dil İşleme Yarışması veya TÜBİTAK BİGG (1512) girişimcilik destek programı için doğrudan sunulabilir nitelikte bir teknolojik kavram kanıtlama (PoC) tabanı oluşturacaktır.
 ```
