@@ -55,7 +55,7 @@ Bu araştırmanın temel amacı; Yalova Üniversitesi Öğrenci İşleri ve Dı�
 
 Araştırma kapsamında çok katmanlı bir metodoloji izlenecektir: (1) Yalova Üniversitesi idari portallarından taranan yönerge, senato kararları ve akademik takvim verileri; taranmış PDF'ler için OCR katmanından geçirilerek Türk idari mevzuat diline özel deterministik regex ayrıştırıcılarıyla "Madde" ve "Fıkra" sınırlarından parçalanacak; yürürlük tarihi ve sürüm üstverileriyle etiketlenecektir. (2) Bilgi getirme aşamasında, çok dilli BGE-M3 yoğun vektörleri ile BM25 seyrek anahtar kelime araması Reciprocal Rank Fusion (RRF) ile harmanlanacak; aday bağlamlar Cross-Encoder mimarisiyle yeniden sıralanacaktır. (3) LangGraph tabanlı durum çizgesi üzerinde Niyet Analiz Ajanı, getirilen kanıtların yeterliliğini denetleyip azami 2 tura kadar arama döngüsü başlatan Düzeltici Arama Ajanı (CRAG) ve üretilen yanıttaki her iddiayı doğrudan mevzuat maddesiyle eşleştiren Öz-Doğrulayıcı Ajan (Self-RAG) çalıştırılacaktır.
 
-Sistemin başarımı; 50 tek adımlı ve 50 çok adımlı sorudan oluşan, 2 bağımsız idari uzman tarafından etiketlenip doğrulanmış (Fleiss' Kappa >= 0.80) 100 soruluk özgün "Altın Standart" (Ground Truth) veri seti üzerinde 5 aşamalı kapsamlı ablasyon analizi (Naive RAG, Hibrit, Reranking, CRAG, Tam Agentic RAG) ile test edilecektir. Değerlendirme sürecinde otomatik RAGAS metriklerinin yanı sıra çift-körleme uzman puanlaması (madde doğruluğu, yürürlük uygunluğu, hukuki bütünlük) uygulanacak; modeller arası performans farkları Shapiro-Wilk normallik testi sonrasında Wilcoxon İşaretli Sıralar Testi ve Rank-Biserial etki büyüklüğü ile raporlanacaktır. Prototipin kullanıcı kabulü ise 50 katılımcılı Sistem Kullanılabilirlik Ölçeği (SUS) ile ölçülecektir. Elde edilecek bulgular, yükseköğretimde güvenilir yapay zekâ asistanlarının tasarımı için açık kaynaklı ve doğrulanmış bir mimari referans sunacaktır.
+Sistemin başarımı; 50 tek adımlı ve 50 çok adımlı sorudan oluşan, 2 bağımsız idari uzman tarafından etiketlenip doğrulanmış (Cohen's Kappa >= 0.80) 100 soruluk özgün "Altın Standart" (Ground Truth) veri seti üzerinde 5 aşamalı kapsamlı ablasyon analizi (Naive RAG, Hibrit, Reranking, CRAG, Tam Agentic RAG) ile test edilecektir. Değerlendirme sürecinde otomatik RAGAS metriklerinin yanı sıra çift-körleme uzman puanlaması (madde doğruluğu, yürürlük uygunluğu, hukuki bütünlük) uygulanacak; modeller arası performans farkları Shapiro-Wilk normallik testi sonrasında Wilcoxon İşaretli Sıralar Testi ve Rank-Biserial etki büyüklüğü ile raporlanacaktır. Prototipin kullanıcı kabulü ise 50 katılımcılı Sistem Kullanılabilirlik Ölçeği (SUS; Brooke, 1996) ile ölçülecektir. Elde edilecek bulgular, yükseköğretimde güvenilir yapay zekâ asistanlarının tasarımı için açık kaynaklı ve doğrulanmış bir mimari referans sunacaktır.
 ```
 
 ---
@@ -100,7 +100,7 @@ Bu projenin temel amacı; Yalova Üniversitesi idari ve akademik süreçlerine i
    Yalova Üniversitesi Öğrenci İşleri ve Dış İlişkiler birimlerine ait 2024-2025 ve 2025-2026 akademik yılı yürürlükteki tüm yönetmelik, yönerge ve takvim belgelerinin taranması; taranmış PDF'lerin Tesseract OCR motoru ile sayısallaştırılması; belgelerin regex motoru ile madde/fıkra sınırlarından bölünerek `yururluk_tarihi`, `senato_karar_no` ve `mulga_durumu` üstverileriyle etiketlenmiş en az 300 blokluk yapılandırılmış bir korpus oluşturulması.
 
 2. **Hibrit Getirme ve Yeniden Sıralama Optimizasyonu (Retrieval):**  
-   Çok dilli BGE-M3 yoğun vektörleri ile BM25Okapi seyrek kelime aramasının RRF algoritması ve BGE-Reranker-v2-m3 Cross-Encoder katmanıyla entegre edilmesi; mevzuat sorgularında doğru kanıt maddesinin ilk 5 sonuçta yer alma oranının (Recall@5) taban modele kıyasla en az %20 artırılarak **%85 seviyesinin üzerine** çıkarılması.
+   Çok dilli BGE-M3 yoğun vektörleri ile BM25Okapi seyrek kelime aramasının RRF algoritması ve BGE-Reranker-v2-m3 Cross-Encoder katmanıyla entegre edilmesi; mevzuat sorgularında doğru kanıt maddesinin ilk 5 sonuçta yer alma oranının (Recall@5) taban modele kıyasla en az %20 artırılarak **%80 seviyesine** ulaştırılması.
 
 3. **Otonom Karar ve Çok Adımlı Akıl Yürütme:**  
    LangGraph durum makinesi üzerinde koordine edilen çoklu ajan akışıyla; Belge Analiz Ajanının bağlam yeterliliğini denetlemesi, eksik kanıtta azami 2 tura kadar arama döngüsü işletmesi ve çok adımlı zorlu sorularda **MRR (Mean Reciprocal Rank) değerinin 0.80'in üzerine** çıkarılması.
@@ -109,10 +109,10 @@ Bu projenin temel amacı; Yalova Üniversitesi idari ve akademik süreçlerine i
    Cevap Ajanı ve Atıf Doğrulayıcı Ajan vasıtasıyla yanıttaki her iddianın doğrudan `[Belge Adı, Madde X, Fıkra Y]` biçiminde etiketlenmesi; desteksiz iddia oranının göreli olarak %75'ten fazla azaltılarak RAGAS Sadakat (**Faithfulness**) skorunun **en az 0.85** seviyesine ulaştırılması.
 
 5. **Uzman Doğrulamalı Altın Test Seti ve Ablasyon Doğrulaması:**  
-   50 tek adımlı ve 50 çok adımlı sorudan oluşan, 2 idari mevzuat uzmanı tarafından doğrulanmış (**Fleiss' Kappa $\ge 0.80$**) 100 soruluk özgün "Altın Standart" veri setinin oluşturulması; 5 farklı model konfigürasyonu (M0-M4) üzerinde ablasyon deneylerinin yürütülmesi ve performans artışının **Wilcoxon İşaretli Sıralar Testi ($p < 0.05$)** ile istatistiksel olarak kanıtlanması.
+   50 tek adımlı ve 50 çok adımlı sorudan oluşan, 2 idari mevzuat uzmanı tarafından doğrulanmış (**Cohen's Kappa $\ge 0.80$**) 100 soruluk özgün "Altın Standart" veri setinin oluşturulması; 5 farklı model konfigürasyonu (M0-M4) üzerinde ablasyon deneylerinin yürütülmesi ve performans artışının **Wilcoxon İşaretli Sıralar Testi ($p < 0.05$)** ile istatistiksel olarak kanıtlanması.
 
 6. **Kullanıcı Kabulü ve Konteynerizasyon:**  
-   Çok turlu konuşma geçmişini destekleyen kullanıcı arayüzünün (Streamlit/FastAPI) ve taşınabilir Docker konteynerinin hazırlanması; 15 idari personel ve 35 öğrenci (toplam 50 kullanıcı) ile yürütülecek testlerde **Sistem Kullanılabilirlik Ölçeği (SUS) skorunun 75/100 (iyi düzey)** üzerinde gerçekleşmesinin sağlanması.
+   Çok turlu konuşma geçmişini destekleyen kullanıcı arayüzünün (Streamlit/FastAPI) ve taşınabilir Docker konteynerinin hazırlanması; 15 idari personel ve 35 öğrenci (toplam 50 kullanıcı) ile yürütülecek testlerde **Sistem Kullanılabilirlik Ölçeği (SUS; Brooke, 1996) skorunun 75/100 (iyi düzey)** üzerinde gerçekleşmesinin sağlanması.
 
 ---
 
@@ -123,7 +123,7 @@ Araştırma; çok katmanlı üniversite idari mevzuatında bilgi getirme ve üre
 
 Önerilen **Hiyerarşik ve Zamansal Mevzuat Yönlendirmeli Çoklu Ajan Mimarisi (Agentic RAG)** beş temel modülden oluşmaktadır:
 1. **Deterministik Mevzuat Ayrıştırma ve Sürüm Üstverisi Katmanı:** Taranmış PDF'ler Tesseract OCR ile metne dökülür. Metinler, Türk mevzuat yazım standardına uygun özel regex algoritmalarıyla doğrudan `Madde` ve `Fıkra` sınırlarından bölünür. Her parçaya `belge_id`, `madde_no`, `fikra_no`, `yururluk_tarihi`, `senato_karar_no` ve `mulga_durumu` etiketleri eklenir; yürürlükte olmayan mülga maddeler arama uzayından izole edilir.
-2. **Hibrit Bilgi Getirme ve RRF Füzyonu:** Semantik bağlamı yakalayan yoğun vektörler (BGE-M3) ile kesin kanun/madde numaralarını yakalayan seyrek terim indeksi (BM25Okapi) birlikte taranır. İki farklı kaynaktan gelen sıralamalar Karşılıklı Sıralama Birleştirmesi (Reciprocal Rank Fusion - RRF; Cormack vd., 2009) ile harmanlanır:
+2. **Hibrit Bilgi Getirme ve RRF Füzyonu:** Semantik bağlamı yakalayan yoğun vektörler (BGE-M3; Chen vd., 2024) ile kesin kanun/madde numaralarını yakalayan seyrek terim indeksi (BM25Okapi) birlikte taranır. İki farklı kaynaktan gelen sıralamalar Karşılıklı Sıralama Birleştirmesi (Reciprocal Rank Fusion - RRF; Cormack vd., 2009) ile harmanlanır:
    $$\text{RRF\_Score}(d \in D) = \sum_{m \in M} \frac{1}{k + r_m(d)} \quad (k = 60)$$
 3. **Cross-Encoder ile Yeniden Sıralama (Re-ranking):** RRF ile seçilen ilk 20 aday bağlam, `bge-reranker-v2-m3` Cross-Encoder modeliyle sorgu-bağlam çifti olarak tam dikkat (full-attention) mekanizması üzerinden puanlanır ve en yüksek skorlu ilk $k=5$ bağlama daraltılır.
 4. **Döngüsel İnceleme ve Düzeltici RAG (CRAG Döngüsü):** LangGraph üzerinde çalışan Belge Analiz Ajanı, getirilen mevzuat maddelerinin kullanıcının niyetini karşılamaya yetip yetmediğini ikili sınıflandırma (Yeterli / Yetersiz) ile denetler. Yetersizlik durumunda arama sorgusunu otonom olarak yeniden yapılandırarak azami 2 tura kadar yeni arama başlatır; sonsuz döngüyü engellemek amacıyla 2. tur sonunda güvenli çıkış (fallback) işletir (Yan vd., 2024).
@@ -157,7 +157,7 @@ Araştırmanın deneysel geçerliliğini sağlamak amacıyla Yalova Üniversites
   * *Tek Adımlı Sorular (Single-hop, n=50):* Tek bir yönetmelik maddesiyle doğrudan yanıtlanabilen olgusal sorular (Örn: "Mazeret sınavı başvuru süresi kaç gündür?").
   * *Çok Adımlı Sorular (Multi-hop, n=50):* Birden fazla birimin mevzuatını ve akademik takvimini birleşik sentezlemeyi gerektiren çapraz sorular (Örn: "Erasmus programına güz döneminde katılan bir öğrencinin ders intibak işlemleri harç ödeme ve ders kayıt haftasıyla nasıl ilişkilendirilir?").
 * **Etiketleme Şeması:** Her test kaydı; `Soru Metni`, `İlgili Birim/Yönetmelik Adı`, `Doğrudan Dayanak Madde ve Fıkra Numaraları`, `Yürürlük Tarihi/Sürüm No` ve `Uzmanlarca Yazılmış İdeal Altın Yanıt` alanlarını içerecektir.
-* **Uzman Doğrulama Protokolü:** Sorular ve altın yanıtlar, Yalova Üniversitesi Öğrenci İşleri Daire Başkanlığı ve Dış İlişkiler Koordinatörlüğü'nden **2 bağımsız idari uzman** tarafından incelenecektir. Uzmanlar arasındaki uyuşma düzeyi **Fleiss' / Cohen's Kappa ($\kappa$)** katsayısı ile hesaplanacak; yalnızca $\kappa \ge 0.80$ (yüksek uzlaşma) sağlanan sorular nihai test setine kabul edilecektir.
+* **Uzman Doğrulama Protokolü:** Sorular ve altın yanıtlar, Yalova Üniversitesi Öğrenci İşleri Daire Başkanlığı ve Dış İlişkiler Koordinatörlüğü'nden **2 bağımsız idari uzman** tarafından incelenecektir. Uzmanlar arasındaki uyuşma düzeyi **Cohen's Kappa ($\kappa$)** katsayısı ile hesaplanacak; yalnızca $\kappa \ge 0.80$ (yüksek uzlaşma) sağlanan sorular nihai test setine kabul edilecektir.
 
 ---
 
@@ -190,7 +190,7 @@ Her bir model ($M_0$ - $M_4$), aynı 100 altın soru üzerinde ayrı ayrı koşt
    * *Kriter B (Yürürlük ve Sürüm Uygunluğu - 1-5):* Bilgi güncel mevzuata mı dayanıyor, mülga madde içeriyor mu?
    * *Kriter C (Hukuki/İdari Bütünlük - 1-5):* Yanıt yanıltıcı bir hüküm veya hak kaybı riski barındırıyor mu?  
    Puanlayıcılar arası güvenilirlik **Cohen's Kappa ($\kappa$)** ve **Krippendorff's Alpha ($\alpha$)** ile raporlanacaktır.
-3. **Kullanıcı Kabul Testi (SUS):** Sistemin nihai prototipi, 15 idari personel ve 35 öğrenciye test ettirilerek 10 soruluk standart **Sistem Kullanılabilirlik Ölçeği (System Usability Scale - SUS)** anketi uygulanacak ve kullanılabilirlik skoru raporlanacaktır.
+3. **Kullanıcı Kabul Testi (SUS):** Sistemin nihai prototipi, 15 idari personel ve 35 öğrenciye test ettirilerek 10 soruluk standart **Sistem Kullanılabilirlik Ölçeği (System Usability Scale - SUS; Brooke, 1996)** anketi uygulanacak ve kullanılabilirlik skoru raporlanacaktır.
 
 ---
 
@@ -221,15 +221,15 @@ Proje ekibi tarafından Yalova Üniversitesi Erasmus yönergeleri ve 2024-2025 a
 ### 2.9. Yöntemin Çalışma Takvimi (İş Paketleri) ile İlişkisi
 * **İP-1 (1. Ay):** Mevzuat taranması, OCR katmanı, sürüm/yürürlük etiketlemesi ve deterministik regex ayrıştırma.
 * **İP-2 (2. Ay):** BGE-M3 ve BM25 hibrit indeksleme, RRF füzyonu ve Cross-Encoder yeniden sıralama pipeline'ı.
-* **İP-3 (3. ve 4. Aylar):** LangGraph durum çizgesi, Niyet Ajanı, döngüsel CRAG mekanizması ve Self-RAG atıf doğrulayıcısının kodlanması.
-* **İP-4 (4. Ay sonu - 5. Ay):** Streamlit/FastAPI arayüzü, çok turlu hafıza ve platformdan bağımsız Docker konteynerizasyonu.
-* **İP-5 (5. ve 6. Aylar - 2 Ay Ayrılmıştır):** 100 soruluk altın test setinin uzmanlarca doğrulanması ($\kappa \ge 0.80$), 5 aşamalı ablasyon deneyleri (M0-M4), çift-körleme uzman paneli, RAGAS ölçümleri, Wilcoxon analizleri ve 50 kullanıcılı SUS testi.
+* **İP-3 (3. Ay):** LangGraph durum çizgesi, Niyet Ajanı, döngüsel CRAG mekanizması ve Self-RAG atıf doğrulayıcısının kodlanması.
+* **İP-4 (4. Ay):** Streamlit/FastAPI kullanıcı web arayüzü, çok turlu oturum hafızası ve platformdan bağımsız Docker konteynerizasyonu.
+* **İP-5 (5. ve 6. Aylar - 2 Ay Ayrılmıştır):** 100 soruluk altın test setinin uzmanlarca doğrulanması (Cohen's Kappa $\kappa \ge 0.80$), 5 aşamalı ablasyon deneyleri (M0-M4), çift-körleme uzman paneli, RAGAS ölçümleri, Wilcoxon analizleri, 50 kullanıcılı SUS testi ve nihai raporlama.
 
 ---
 
 ### BİRLEŞTİRİLMİŞ AKADEMİK KAYNAKÇA
 
-* Asai, A., Sewon, M., et al. (2023). Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection. *arXiv preprint arXiv:2310.11511*.
+* Asai, A., Wu, Z., Wang, Y., Sil, A., & Hajishirzi, H. (2023). Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection. *arXiv preprint arXiv:2310.11511*.
 * Brooke, J. (1996). SUS: A 'quick and dirty' usability scale. *Usability evaluation in industry*, 189(194), 4-7.
 * Chen, J., Xiao, S., et al. (2024). BGE M3-Embedding: Multi-Lingual, Multi-Functionality, Multi-Granularity Text Embeddings Through Versatile Pre-Training. *arXiv preprint arXiv:2402.03216*.
 * Cormack, G. V., Clarke, C. L., & Buettcher, S. (2009). Reciprocal rank fusion outperforms condorcet and individual machine learning methods. *ACM SIGIR*, 758-759.
@@ -256,16 +256,16 @@ Yalova Üniversitesi bünyesindeki güncel lisans/önlisans yönetmelikleri, sen
 Ayrıştırılan mevzuat blokları çok dilli BGE-M3 gömme modeliyle yoğun vektörlere dönüştürülerek ChromaDB veritabanına indekslenecektir. Eşzamanlı olarak kesin mevzuat madde ve terim eşleşmeleri için BM25 seyrek indeksi inşa edilecektir. İki getirme kanalını birleştiren RRF (Reciprocal Rank Fusion) füzyonu ve aday bağlamları çapraz dikkatle puanlayan BGE-Reranker-v2-m3 Cross-Encoder katmanı kurulacaktır.
 - Başarı Ölçütü: Hibrit arama ve yeniden sıralama hattının test sorgularında ilk k bağlamı doğrulukla getirmesi ve indeksleme hattının tamamlanması (%15).
 
-İP-3: Çok Ajanlı Durum Çizgesi (LangGraph), Düzeltici RAG (CRAG) ve Öz-Doğrulama Tasarımı (3. ve 4. Aylar)
+İP-3: Çok Ajanlı Durum Çizgesi (LangGraph), Düzeltici RAG (CRAG) ve Öz-Doğrulama Tasarımı (3. Ay)
 LangGraph üzerinde durum çizgesi (StateGraph) kurgulanacaktır. Kullanıcı sorgusunu alt niyetlere bölen Niyet Analiz Ajanı, getirilen bağlamın yeterliliğini denetleyip gerekirse azami 2 tura kadar aramayı döngüsel tekrarlayan Belge Analiz Ajanı (CRAG) ve yanıtı mevzuat maddesi düzeyinde kaynak göstererek üreten Yanıt Ajanı kodlanacaktır. Üretilen yanıtı kaynak fıkra ile NLI mantığıyla satır satır denetleyen bağımsız Doğrulayıcı Ajan (Self-RAG) entegre edilecektir.
 - Başarı Ölçütü: Çok adımlı sorgularda ajanlar arası durum geçişlerinin hatasız çalışması, döngüsel aramanın 2 turla sınırlandırılması ve atıf doğrulayıcının çalışması (%25).
 
-İP-4: Kullanıcı Arayüzü, API Katmanı ve Konteynerizasyon (4. Ay Sonu ve 5. Ay)
+İP-4: Kullanıcı Arayüzü, API Katmanı ve Konteynerizasyon (4. Ay)
 Öğrenci ve idari personelin sisteme kolayca erişebilmesi için çok turlu konuşma geçmişini (hafıza) destekleyen Streamlit ve FastAPI tabanlı kullanıcı arayüzü geliştirilecektir. Sistemin farklı sunucu ortamlarında ek bir kütüphane çakışması olmadan çalıştırılabilmesi için uçtan uca Docker konteynerizasyon paketi hazırlanacaktır.
 - Başarı Ölçütü: Web arayüzünün ve Docker ortamının hatasız ve kararlı şekilde ayağa kalkması (%15).
 
 İP-5: Altın Test Setinin Uzmanlarca Doğrulanması, Kapsamlı Ablasyon Deneyleri, Körleme Uzman Değerlendirmesi ve İstatistiksel Analiz (5. ve 6. Aylar - 2 Ay)
-Öğrenci İşleri ve Dış İlişkiler uzmanları rehberliğinde 50 tek adımlı, 50 çok adımlı sorudan oluşan 100 soruluk Altın Standart test veri seti oluşturulacak ve uzmanlar arası uyum (Fleiss' Kappa >= 0.80) doğrulanacaktır. 5 farklı ablasyon modeli (M0-M4) aynı test setinde koşturulacaktır. RAGAS otomatik metrikleri hesaplanacak; 40 soru üzerinde çift-körleme uzman paneli ile madde ve hukuki bütünlük puanlaması yapılacaktır. Shapiro-Wilk normallik testi sonrasında Wilcoxon İşaretli Sıralar Testi ve Rank-Biserial etki büyüklüğü hesaplanacaktır. 50 kullanıcı ile SUS anketi yürütülecek ve TÜBİTAK sonuç raporu hazırlanacaktır.
+Öğrenci İşleri ve Dış İlişkiler uzmanları rehberliğinde 50 tek adımlı, 50 çok adımlı sorudan oluşan 100 soruluk Altın Standart test veri seti oluşturulacak ve uzmanlar arası uyum (Cohen's Kappa >= 0.80) doğrulanacaktır. 5 farklı ablasyon modeli (M0-M4) aynı test setinde koşturulacaktır. RAGAS otomatik metrikleri hesaplanacak; 40 soru üzerinde çift-körleme uzman paneli ile madde ve hukuki bütünlük puanlaması yapılacaktır. Shapiro-Wilk normallik testi sonrasında Wilcoxon İşaretli Sıralar Testi ve Rank-Biserial etki büyüklüğü hesaplanacaktır. 50 kullanıcı ile SUS anketi yürütülecek ve TÜBİTAK sonuç raporu hazırlanacaktır.
 - Başarı Ölçütü: Agentic RAG mimarisinin Recall@5 ve Sadakat metriklerinde Naive RAG'e kıyasla p < 0.05 düzeyinde istatistiksel üstünlük sağlaması, ablasyon raporunun tamamlanması ve SUS skorunun 75 üzerinde gerçekleşmesi (%30).
 ```
 
@@ -298,10 +298,10 @@ Risk 3: Mevzuat Çelişkilerinde Desteklenmeyen İddia Üretimi ve Atıf Doğrul
 - Risk Düzeyi: Yüksek
 - B Planı: Farklı yönergeler arasındaki olası çelişkilerde dil modelinin kaynak dışı hüküm uydurmasını engellemek için Çift Aşamalı Öz-Doğrulama (Self-RAG) mekanizması zorunlu kılınacaktır. Doğrulayıcı Ajan, yanıttaki her cümleyi kaynak bağlamdaki fıkra ile NLI (Doğal Dil Çıkarsaması) prensibiyle eşleştirecek; doğrulanmayan veya çelişen ifadeler yanıttan otomatik elenecektir.
 
-Risk 4: Yerel Donanım / GPU Kaynak Yetersizliği ve Bellek (VRAM) Kısıtları
-- İlgili İş Paketi: İP-2 ve İP-4 (Hibrit İndeksleme ve Konteynerizasyon)
+Risk 4: Donanım/GPU Kaynak Yetersizliği ve Konteyner Ortamı Bağımlılık Uyumsuzlukları
+- İlgili İş Paketi: İP-2 ve İP-4 (Hibrit İndeksleme, Arayüz ve Konteynerizasyon)
 - Risk Düzeyi: Orta
-- B Planı: BGE-M3 gömme modeli, BGE-Reranker ve yerel LLM'in eşzamanlı çalıştırılması sırasında yerel GPU VRAM'inin aşılması durumunda; modeller 4-bit/8-bit kuantizasyon formatlarına (GGUF/AWQ) indirgenecektir. Ayrıca proje bütçesinden ayrılan 5.000 TL'lik bulut GPU hesaplama hizmet alımı devreye sokularak ablasyon deneyleri bulut sunucu üzerinde kesintisiz tamamlanacaktır.
+- B Planı: BGE-M3, BGE-Reranker ve yerel LLM'in eşzamanlı çalışmasında VRAM aşımı riskine karşı 4-bit/8-bit kuantizasyon (GGUF/AWQ) uygulanacak ve bütçedeki 5.000 TL'lik bulut GPU hizmet alımı devreye sokulacaktır. Docker ortamındaki olası CUDA sürücü ve kütüphane çakışmalarına karşı ise CPU-fallback destekli çok aşamalı (multi-stage) Docker imajları ve yalıtılmış sanal ortam yapılandırması kullanılacaktır.
 
 Risk 5: Altın Test Setinin Uzmanlarca Doğrulanmasında Yaşanabilecek Gecikmeler
 - İlgili İş Paketi: İP-5 (Altın Test Seti, Uzman Doğrulaması ve İstatistiksel Analiz)
@@ -330,7 +330,7 @@ Açık kaynaklı temel dil modelinin (8B parametreli) yerel ortamda kuantize edi
 ### 1. Bilimsel/Akademik Çıktılar
 ```text
 - Ulusal/Uluslararası Hakemli Bildiri: Araştırma kapsamında elde edilen deneysel bulgular ve 5 aşamalı ablasyon sonuçları (Naive RAG'den Agentic RAG'e Recall@5, MRR ve RAGAS metriklerindeki istatistiksel değişim), IEEE Sinyal İşleme ve İletişim Uygulamaları Kurultayı (SİU) veya TAINN Uluslararası Yapay Zekâ Konferansı gibi saygın bir bilimsel platformda hakem değerlendirmesinden geçirilerek en az 1 adet akademik bildiri olarak sunulacak ve bildiriler kitabında yayımlanacaktır.
-- Doğrulanmış Akademik Kıyaslama Veri Seti (Benchmark): Yükseköğretim idari mevzuatına dayalı, uzmanlarca doğrulanmış (Fleiss' Kappa >= 0.80), 50 tek adımlı ve 50 çok adımlı sorudan oluşan 100 soruluk Türkçe "Altın Standart (Ground Truth)" test veri seti açık bilim ilkeleri doğrultusunda literatüre kazandırılacaktır.
+- Doğrulanmış Akademik Kıyaslama Veri Seti (Benchmark): Yükseköğretim idari mevzuatına dayalı, uzmanlarca doğrulanmış (Cohen's Kappa >= 0.80), 50 tek adımlı ve 50 çok adımlı sorudan oluşan 100 soruluk Türkçe "Altın Standart (Ground Truth)" test veri seti açık bilim ilkeleri doğrultusunda literatüre kazandırılacaktır.
 - Lisans Bitirme Tezi: Yükseköğretim mevzuatında çok ajanlı sistemlerin başarımını, hata analizlerini ve ablasyon sonuçlarını belgeleyen kapsamlı bir bitirme tezi ve teknik araştırma raporu tamamlanacaktır.
 ```
 
