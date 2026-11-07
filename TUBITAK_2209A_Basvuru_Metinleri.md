@@ -31,17 +31,16 @@ Doğal Dil İşleme, Agentic RAG, Çoklu Ajan Sistemleri, Hibrit Arama, Ablasyon
 
 * **Makine-Teçhizat:** 0 TL
 * **Ulaşım:** 0 TL
-* **Sarf Malzemesi:** **2.000 TL**
-* **Hizmet Alımı:** **10.000 TL**
+* **Sarf Malzemesi:** 0 TL (Depolama ve yedekleme üniversite bulut altyapısı ve yerel kurumsal iş istasyonu üzerinden karşılanacaktır.)
+* **Hizmet Alımı:** **12.000 TL**
 * **TOPLAM TALEP EDİLEN BÜTÇE:** **12.000 TL**
 
 ### Bütçe Kalemleri ve Ayrıntılı Harcama Dökümü:
 
 | Sıra No | Bütçe Türü | Kalem Açıklaması | Birim Maliyet ve Süre | Talep Edilen Tutar | Gerekçe |
 | :---: | :--- | :--- | :--- | :---: | :--- |
-| **1** | Hizmet Alımı | **Bulut Hesaplama ve GPU/Sunucu Kiralama Hizmeti** | 4 Ay × 1.250 TL/Ay | **5.000 TL** | Yerel iş istasyonuna ek olarak; 5 farklı ablasyon modelinin (M0-M4) eşzamanlı çalıştırılması, Cross-Encoder yeniden sıralama katmanının yüksek hacimli sorgularda test edilmesi ve çıkarım gecikmelerinin (latency) standart bir sunucu ortamında ölçülebilmesi için sanal sunucu/GPU hesaplama kapasitesi kiralanacaktır. |
-| **2** | Hizmet Alımı | **Büyük Dil Modeli API ve RAGAS Değerlendirme Hizmet Alımı** | 100 Soru × 5 Model × RAGAS Jüri Çıkarımı (~12.5M Token) | **5.000 TL** | 100 soruluk test setinin 5 farklı ablasyon modeli üzerinden koşturulması (500 yanıt) ve bu yanıtların RAGAS çatısı altında hakem model (LLM-as-a-Judge) marifetiyle Context Relevance, Faithfulness ve Answer Relevance metrikleri açısından tarafsız değerlendirilmesinde token kullanım maliyetini karşılamak amacıyla kullanılacaktır. |
-| **3** | Sarf Malzemesi | **Taşınabilir Yüksek Hızlı Veri Depolama Birimi (1 TB Harici NVMe SSD)** | 1 Adet × 2.000 TL | **2.000 TL** | Yalova Üniversitesi bünyesinden kazınan ham mevzuat PDF arşivinin, taranmış belgelerin OCR görüntü matrislerinin, ChromaDB vektör/SQLite indekslerinin ve deneysel log kayıtlarının proje ekibi ve danışman arasında veri kaybı riski olmadan güvenle taşınması ve yerel yedeklenmesi amacıyla sarf malzemesi olarak talep edilmektedir. |
+| **1** | Hizmet Alımı | **Bulut GPU ve Yüksek Başarımlı Sunucu Kiralama Hizmeti (RunPod Bulut Altyapısı)** | 4 Ay (~350-400 Saat Aktif GPU Süresi, ~$0.40-$0.50/saat) | **6.000 TL** | Yerel iş istasyonundaki GPU (RTX 4060 8GB) kapasitesine ek olarak; 5 farklı ablasyon modelinin (M0-M4) eşzamanlı çalıştırılması, Cross-Encoder yeniden sıralama katmanının yüksek hacimli sorgularda test edilmesi ve çıkarım gecikmelerinin (latency) standart bir sunucu ortamında ölçülebilmesi için RunPod platformu üzerinden saatlik/saniye bazlı NVIDIA RTX 4090 / A6000 (48GB VRAM) sanal GPU hesaplama kapasitesi kiralanacaktır. |
+| **2** | Hizmet Alımı | **Büyük Dil Modeli API ve RAGAS Hakem Değerlendirme Hizmet Alımı (OpenAI GPT-4o-mini & DeepSeek-V3)** | ~20-25 Milyon Token (Karma API Seviyesi, ~250-300 TL/1M Token) | **6.000 TL** | 100 soruluk test setinin 5 farklı ablasyon modeli üzerinden koşturulması (500 yanıt) ve bu yanıtların RAGAS çatısı altında hakem model (LLM-as-a-Judge) marifetiyle Context Relevance, Context Precision, Faithfulness ve Answer Relevance metrikleri açısından tarafsız değerlendirilmesinde token kullanım maliyetini karşılamak amacıyla kullanılacaktır. |
 | | **TOPLAM** | | | **12.000 TL** | |
 
 ---
@@ -301,7 +300,7 @@ Risk 3: Mevzuat Çelişkilerinde Desteklenmeyen İddia Üretimi ve Atıf Doğrul
 Risk 4: Donanım/GPU Kaynak Yetersizliği ve Konteyner Ortamı Bağımlılık Uyumsuzlukları
 - İlgili İş Paketi: İP-2 ve İP-4 (Hibrit İndeksleme, Arayüz ve Konteynerizasyon)
 - Risk Düzeyi: Orta
-- B Planı: BGE-M3, BGE-Reranker ve yerel LLM'in eşzamanlı çalışmasında VRAM aşımı riskine karşı 4-bit/8-bit kuantizasyon (GGUF/AWQ) uygulanacak ve bütçedeki 5.000 TL'lik bulut GPU hizmet alımı devreye sokulacaktır. Docker ortamındaki olası CUDA sürücü ve kütüphane çakışmalarına karşı ise CPU-fallback destekli çok aşamalı (multi-stage) Docker imajları ve yalıtılmış sanal ortam yapılandırması kullanılacaktır.
+- B Planı: BGE-M3, BGE-Reranker ve yerel LLM'in eşzamanlı çalışmasında VRAM aşımı riskine karşı 4-bit/8-bit kuantizasyon (GGUF/AWQ) uygulanacak ve bütçedeki 6.000 TL'lik bulut GPU hizmet alımı devreye sokulacaktır. Docker ortamındaki olası CUDA sürücü ve kütüphane çakışmalarına karşı ise CPU-fallback destekli çok aşamalı (multi-stage) Docker imajları ve yalıtılmış sanal ortam yapılandırması kullanılacaktır.
 
 Risk 5: Altın Test Setinin Uzmanlarca Doğrulanmasında Yaşanabilecek Gecikmeler
 - İlgili İş Paketi: İP-5 (Altın Test Seti, Uzman Doğrulaması ve İstatistiksel Analiz)
