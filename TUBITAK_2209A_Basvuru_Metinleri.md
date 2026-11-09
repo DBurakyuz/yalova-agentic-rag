@@ -198,7 +198,7 @@ Araştırmanın deneysel geçerliliğini sağlamak amacıyla Yalova Üniversites
    * *Kriter A (Madde ve Fıkra Atıf Doğruluğu - 1-5):* Atıf yapılan kanun/yönetmelik maddesi doğru mu?
    * *Kriter B (Yürürlük ve Sürüm Uygunluğu - 1-5):* Bilgi güncel mevzuata mı dayanıyor, mülga madde içeriyor mu?
    * *Kriter C (Hukuki/İdari Bütünlük - 1-5):* Yanıt yanıltıcı bir hüküm veya hak kaybı riski barındırıyor mu?  
-   Puanlayıcılar arası güvenilirlik **Cohen's Kappa ($\kappa$)** ve **Krippendorff's Alpha ($\alpha$)** ile raporlanacaktır.
+   Puanlayıcılar arası güvenilirlik **Cohen's Kappa ($\kappa$; Cohen, 1960)** ile raporlanacaktır.
 3. **Kullanıcı Kabul Testi (SUS):** Sistemin nihai prototipi; lisans öğrencileri, araştırma görevlileri ve ilgili akademik/idari süreç paydaşlarından oluşan 30 kişilik kullanıcı grubuna test ettirilerek 10 soruluk standart **Sistem Kullanılabilirlik Ölçeği (System Usability Scale - SUS; Brooke, 1996)** anketi uygulanacak ve kullanılabilirlik skoru raporlanacaktır.
 
 ---
