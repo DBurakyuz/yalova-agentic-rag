@@ -165,22 +165,32 @@ Araştırmanın deneysel geçerliliğini sağlamak amacıyla Yalova Üniversites
 
 ### 5.4. Kapsamlı Ablasyon Deney Tasarımı (Ablation Study)
 
-Önerilen mimarideki her bir bileşenin getirdiği bağımsız katkıyı ayrıştırmak amacıyla 5 aşamalı artımlı ablasyon deneyi yürütülecektir:
+Önerilen mimarideki her bir bileşenin getirdiği bağımsız katkıyı izole etmek ve ayrıştırmak amacıyla, aynı 100 soruluk Altın Standart test veri seti üzerinde 5 aşamalı artımlı bir ablasyon deneyi yürütülecektir. Modeller basitten karmaşığa doğru şu artımlı bileşen hiyerarşisiyle yapılandırılmıştır:
 
-$$\begin{array}{|l|c|c|c|c|c|}
-\hline
-\textbf{Bileşenler} & \textbf{M0 (Naive)} & \textbf{M1 (Hibrit)} & \textbf{M2 (Rerank)} & \textbf{M3 (CRAG)} & \textbf{M4 (Agentic)} \\
-\hline
-\text{Yoğun Vektör (BGE-M3)} & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
-\text{Seyrek Anahtar Kelime (BM25)} & - & \checkmark & \checkmark & \checkmark & \checkmark \\
-\text{RRF Sıralama Birleştirmesi} & - & \checkmark & \checkmark & \checkmark & \checkmark \\
-\text{Cross-Encoder (BGE-Reranker)} & - & - & \checkmark & \checkmark & \checkmark \\
-\text{Niyet Ayrıştırma ve CRAG Döngüsü} & - & - & - & \checkmark & \checkmark \\
-\text{Öz-Doğrulayıcı Ajan (Self-RAG)} & - & - & - & - & \checkmark \\
-\hline
-\end{array}$$
+1. **Model 0 (M0 - Temel Çizgi / Naive RAG):** 
+   * *Bileşenler:* Yalnızca çok dilli BGE-M3 yoğun vektör getirme (Dense Retrieval) ve temel dil modeli üretim katmanı.
+   * *Amacı:* Sistemin yalın semantik getirme performansını ve başlangıç (baseline) hata payını temsil eder.
 
-Her bir model ($M_0$ - $M_4$), aynı 100 altın soru üzerinde ayrı ayrı koşturulacak; bilgi getirme (Retrieval) metrikleri $M_0 \rightarrow M_1 \rightarrow M_2$ geçişlerinde; üretim kalitesi ve sadakat (Generation/Faithfulness) metrikleri ise $M_2 \rightarrow M_3 \rightarrow M_4$ geçişlerinde ölçülerek mimari bileşenlerin net etkisi izole edilecektir.
+2. **Model 1 (M1 - Hibrit Arama Modeli):** 
+   * *Bileşenler:* M0 mimarisine ek olarak mevzuat metinlerindeki kesin terim ve madde numarası eşleşmelerini yakalayan BM25 seyrek anahtar kelime indeksi ve iki getirme kanalını harmanlayan RRF (Reciprocal Rank Fusion) sıralama algoritması.
+   * *İzole Edilen Etki:* Yoğun semantik ve seyrek sözcüksel aramanın birlikte kullanılmasının (hibrit getirme) bilgi getirme başarımına net katkısı.
+
+3. **Model 2 (M2 - Yeniden Sıralamalı Hibrit Model):** 
+   * *Bileşenler:* M1 mimarisine ek olarak RRF ile birleştirilen aday bağlamları çapraz dikkat mekanizmasıyla derinlemesine puanlayan BGE-Reranker-v2-m3 Cross-Encoder katmanı.
+   * *İzole Edilen Etki:* Çapraz dikkat tabanlı yeniden sıralamanın üst sıralardaki (Top-k) alaka düzeyine ve gürültülü pasajların elenmesine net katkısı.
+
+4. **Model 3 (M3 - Düzeltici RAG / CRAG Döngüsü):** 
+   * *Bileşenler:* M2 getirme hattına ek olarak LangGraph durum çizgesi üzerinde çalışan Niyet Analiz Ajanı ve getirilen bağlamın yeterliliğini denetleyip eksiklik durumunda azami 2 tura kadar arama döngüsünü yineleyen Belge Analiz Ajanı (CRAG döngüsü).
+   * *İzole Edilen Etki:* Çok adımlı sorgularda ve yetersiz bağlam koşullarında döngüsel düzeltici aramanın bilgi erişim kalitesine katkısı.
+
+5. **Model 4 (M4 - Tam Agentic RAG / Önerilen Nihai Mimari):** 
+   * *Bileşenler:* M3 mimarisine ek olarak üretilen her bir yanıt cümlesini dayanak mevzuat fıkrasıyla satır satır Doğal Dil Çıkarımı (NLI) mantığıyla çapraz denetleyen ve atıfsız/dayanaksız ifadeleri eleyen bağımsız Öz-Doğrulayıcı Ajan (Self-RAG) katmanı.
+   * *İzole Edilen Etki:* Halüsinasyonun engellenmesi, mevzuat atıf sadakatinin güvenceye alınması ve hukuki güvenilirlik üzerindeki nihai etkisi.
+
+**Ablasyon Metrik İzolasyon ve Analiz Protokolü:**
+* **Bilgi Getirme (Retrieval) Katkısının İzolasyonu (M0 -> M1 -> M2):** Getirme hattındaki mimari bileşenlerin net etkisi, üretim katmanından bağımsız olarak Context Recall@5, MRR (Mean Reciprocal Rank) ve Context Precision metriklerindeki değişim üzerinden ölçülecektir.
+* **Üretim ve Sadakat (Generation/Faithfulness) Katkısının İzolasyonu (M2 -> M3 -> M4):** Ajan tabanlı döngüsel düzeltme ve öz-denetim katmanlarının net etkisi; RAGAS Faithfulness (Sadakat), Answer Relevance metrikleri ile çift-körleme uzman paneli puanlaması (madde atıf doğruluğu ve hukuki bütünlük) üzerinden izole edilecektir.
+* **İstatistiksel Karşılaştırma:** Her 5 model de aynı 100 altın soru üzerinde ayrı ayrı koşturulacak (5 model x 100 soru = 500 yanıt kaydı); modeller arasındaki performans farkları bağımlı örneklem kabul edilerek Shapiro-Wilk normallik testi sonrasında Wilcoxon İşaretli Sıralar Testi (p < 0.05) ve Rank-Biserial etki büyüklüğü ile raporlanacaktır.
 
 ---
 
